@@ -13,7 +13,7 @@ port = 6667
 ircsock = socket.socket()
 shufflePath = "shuffle.p"
 hellomessages = ['How you doin there, {name}?', 'Sup, {name}?', 'You must be {name}.', 'Well, if it isn\'t {name}.']
- 
+
 ircsock.connect((server, port))
 ircsock.send("PASS " + passw + "\r\n")
 ircsock.send("NICK " + nick + "\r\n")
@@ -193,6 +193,12 @@ def shuf(args, name):
             sendmsg(channel, "Something went wrong")
       except Exception:
          sendmsg(channel, "No solution could be found.")
+   elif args[1] == 'last' and len(args) == 3:
+      try:
+         solutionNum = int(args[2])
+         sendmsg(channel, shuffles[-solutionNum].__repr__())
+      except Exception:
+         sendmsg(channel, "Entry doesn't exist or invalid syntax.")
    else:
       sendmsg(channel, "Invalid command syntax.")
 

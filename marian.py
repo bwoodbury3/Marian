@@ -2,6 +2,7 @@ import socket
 import time
 import sys
 import cPickle
+import pig
  
 from random import randint
  
@@ -13,7 +14,7 @@ port = 6667
 ircsock = socket.socket()
 shufflePath = "shuffle.p"
 hellomessages = ['How you doin there, {name}?', 'Sup, {name}?', 'You must be {name}.', 'Well, if it isn\'t {name}.']
-
+ 
 ircsock.connect((server, port))
 ircsock.send("PASS " + passw + "\r\n")
 ircsock.send("NICK " + nick + "\r\n")
@@ -24,8 +25,7 @@ commands = []; #List of possible commands
                #Add commands with newCommand(name, description, callback)
 
 class Shuffle(object):
-   def __init__(self, level, entryNumber):
-      self.entryNumber = entryNumber
+   def __init__(self, level):
       print "Init is called"
       self.checkLevel(level)
       self.level = level
@@ -34,9 +34,9 @@ class Shuffle(object):
 
    def __repr__(self):
       if self.hasSolution():
-         return "#" + str(self.entryNumber) + ": " + self.level + " has solution " + self.solution + " by " + self.name
+         return self.level + " has solution " + self.solution + " by " + self.name
       else:
-         return "#" + str(self.entryNumber) + ": " + self.level + " has no solution"
+         return self.level + " has no solution"
 
    def checkLevel(self, level):
       # We should check to see that it's a valid level url, or even just in the right format
@@ -69,6 +69,7 @@ def main():
    addCommand("marian", "Say hello!", marian) #This command probably should not be included in !help
    addCommand("hello", "I will greet you.", hello) #This command probably should not be included in !help
    addCommand("shuf", "Access the ChatShuffle2.0", shuf)
+   addCommand("pig", "Play Pig against me", playPig)
 
    while True:
       data = ircsock.recv(2048)
@@ -91,29 +92,36 @@ def main():
 def parsemessage(data, ircsock, channel):
    msgParts = data.split(':', 2)
    cmd = msgParts[2]
-   print cmd + " | is the command"
+
    if cmd[0] == '!':
       name = msgParts[1].split('!')[0]
       print name + " | sent this message"
+      source = (msgParts[1].split())[2]
+      
+      if source == nick: #If it was a private message to the bot
+         destination = name #Respond to the sender
+      else:
+         destination = source #Otherwise, send it back where it came from (the channel)
+         
       cmdparts = cmd[1:].split()
  
       tup = findCommandTuple(cmdparts[0])
       if (tup == False):
-         sendmsg(channel, "I'm sorry, I didn't catch that.") #Or maybe if the command isn't found it should just do nothing
+         sendmsg(destination, "I'm sorry, I didn't catch that.") #Or maybe if the command isn't found it should just do nothing
 
       else:
-         tup[2](cmdparts, name) #If it is found, then run the callback function located at index 2
-                      #Pass name cuz why not, some functions will use it
+         tup[2](cmdparts, name, destination) #If it is found, then run the callback function located at index 2
+                      #Pass name and cmdparts, and destination
 
 def randomitemfrom(alist):
    return alist[randint(0, len(alist) - 1)]
  
-def sendmsgtofc(msg):
-   sendmsg("#fctest", msg)
+##def sendmsgtofc(msg):
+##   sendmsg("#fctest", msg)
    
-def sendmsg(chan, msg, name = "<insert name>"): # This is the send message function, it sends messages to the channel.
-   msg = reverseEscape(msg, name)  #The function will escape certain special markup
-   ircsock.send("PRIVMSG "+ chan +" :"+ msg +"\n")
+def sendmsg(dest, msg, name = "<insert name>", nick = "<insert nick>"): # This is the send message function, it sends messages to the channel.
+   msg = reverseEscape(msg, name, nick)  #The function will escape certain special markup
+   ircsock.send("PRIVMSG "+ dest +" :"+ msg +"\n")
 
 def addCommand(name, description, callback):
    commands.append((name, description, callback))
@@ -125,82 +133,101 @@ def findCommandTuple(name):
  
    return False #If nothing was found, it will get to here, where it will return False
  
-def reverseEscape(message, name):
+def reverseEscape(message, name, nick): #Not sure what to call it, feel free to rename this function
    string = message
    string = string.replace("{name}", name)
+   string = string.replace("{nick}", nick)
    return string
 
+#Hopefully, a master function for waiting for and taking input
+#It takes a parameter 'name', and adds it the the input List
+usersGivingInput = []
+def getInput(name):
+   usersGivingInput.append(name)
+   
 #COMMAND CALLBACK FUNCTIONS after this point
 #All functions get passed name, MAKE SURE THEY ALL INCLUDE A PARAMETER FOR NAME
-def displayHelp(args, name):
+#same thing for args and destination
+#Then make sre messages are sent to the correct destination
+def displayHelp(args, name, destination):
    #I'm sure there is some sort of printf for easy formating, but I rather do it manually
-   sendmsg(channel, "List of commands you can use:")
+   sendmsg(destination, "List of commands you can use:")
    for command in commands:
-      sendmsg(channel, "    !" + command[0] + " | " + command[1])
+      sendmsg(destination, "    !" + command[0] + " | " + command[1])
 
-def quitIRC(args, name):
+def quitIRC(args, name, destination):
+##   if (name == "rian" or name == "marjo"): #We may have to expand this to a full whitelist later
+##      print("Leaving")                     #Also at the moment it is just based on nicks
+##      sendmsg(destination, "Goodbye!")
+##      ircsock.send('QUIT\r\n')
+##      sys.exit(name)
+
+   #Ok, the whitelist is bugging out and not letting me quit. Let's leave that for later
    print("Leaving")
-   sendmsg(channel, "Goodbye!")
+   sendmsg(channel, "Goodbye!") #Say to the whole channel marian is leaving
    ircsock.send('QUIT\r\n')
    sys.exit(name)
  
-def marian(args, name):
-   sendmsg(channel, "Yes? Can I help you?")
+def marian(args, name, destination):
+   sendmsg(destination, "Yes? Can I help you?")
 
-def hello(args, name):
-   sendmsg(channel, randomitemfrom(hellomessages), name)
+def hello(args, name, destination):
+   sendmsg(destination, randomitemfrom(hellomessages), name)
 
-def shuf(args, name):
+def shuf(args, name, destination):
    if len(args) < 2:
-      sendmsg(channel, "blah blah syntax error, show shuf options, blah")
+      sendmsg(destination, "blah blah syntax error, show shuf options, blah")
       return
    if args[1] == 'solve' and len(args) == 3:
       if len(shuffles) > 0:
          if shuffles[-1].hasSolution():
-            sendmsg(channel, "Shuf #" + str(len(shuffles)) + " already has a solution. Please edit.")
+            sendmsg(destination, "Shuf #" + str(len(shuffles)) + " already has a solution. Please edit.")
          else:
             shuffles[-1].solveLevel(args[2], name)
             f = open(shufflePath, "wb")
             cPickle.dump(shuffles, f)
             f.close()
-            sendmsg(channel, "Nice solve! Database updated. Remember to edit!")
+            sendmsg(destination, "Nice solve! Database updated. Remember to edit!")
       else:
-         sendmsg(channel, "There is no level to be solved. Make the first level! Do 'shuf edit [URL]'")
+         sendmsg(destination, "There is no level to be solved. Make the first level! Do 'shuf edit [URL]'")
    elif args[1] == 'edit' and len(args) == 3:
       if len(shuffles) > 0:
          if not shuffles[-1].hasSolution():
-            sendmsg(channel, "You have to solve the other level first, silly.")
-            sendmsg(channel, shuffles[-1].level)
+            sendmsg(destination, "You have to solve the other level first, silly.")
+            sendmsg(destination, shuffles[-1].level)
             return
-      shuffles.append(Shuffle(args[2], len(shuffles) + 1))
+      shuffles.append(Shuffle(args[2]))
       f = open(shufflePath, "wb")
       cPickle.dump(shuffles, f)
       f.close()
       sendmsg(channel, "Level added")
    elif args[1] == 'level':
       if len(shuffles) == 0:
-         sendmsg(channel, "No levels in database.")
+         sendmsg(destination, "No levels in database.")
       elif not shuffles[-1].level:
-         sendmsg(channel, "Last level could not be found.")
+         sendmsg(destination, "Last level could not be found.")
       else:
-         sendmsg(channel, shuffles[-1].level)
+         sendmsg(destination, shuffles[-1].level)
    elif args[1] == 'last' and len(args) == 2:
       try:
          if shuffles[-1].solution != "":
-            sendmsg(channel, str(shuffles[-1]))
+            sendmsg(destination, shuffles[-1].__repr__())
          elif shuffles[-2].solution != "":
-            sendmsg(channel, str(shuffles[-2]))
+            sendmsg(destination, shuffles[-2].__repr__())
          else:
-            sendmsg(channel, "Something went wrong")
+            sendmsg(destination, "Something went wrong")
       except Exception:
-         sendmsg(channel, "No solution could be found.")
-   elif args[1] == 'find' and len(args) == 3:
-      try:
-         solutionNum = int(args[2])
-         sendmsg(channel, str(shuffles[solutionNum - 1]))
-      except Exception:
-         sendmsg(channel, "Entry doesn't exist or invalid syntax.")
+         sendmsg(destination, "No solution could be found.")
    else:
-      sendmsg(channel, "Invalid command syntax.")
+      sendmsg(destination, "Invalid command syntax.")
+
+def playPig(args, name, destination):
+   #We don't want to play a game in the mian channel, it will annoy people
+   #Therefore, first check to see if this is a private conversation
+   #If name == destination, then it is a private conversation
+   if (name ==  destination):
+      pass
+   else:
+      sendmsg(destination, "I am sorry {name}, you can only play that game in a private chat with me. Type \"/query {nick} !pig\" to play.", name, nick)
 
 main()

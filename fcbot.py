@@ -24,7 +24,8 @@ commands = []; #List of possible commands
                #Add commands with newCommand(name, description, callback)
 
 class Shuffle(object):
-   def __init__(self, level):
+   def __init__(self, level, entryNumber):
+      self.entryNumber = entryNumber
       print "Init is called"
       self.checkLevel(level)
       self.level = level
@@ -33,9 +34,9 @@ class Shuffle(object):
 
    def __repr__(self):
       if self.hasSolution():
-         return self.level + " has solution " + self.solution + " by " + self.name
+         return "#" + str(self.entryNumber) + ": " + self.level + " has solution " + self.solution + " by " + self.name
       else:
-         return self.level + " has no solution"
+         return "#" + str(self.entryNumber) + ": " + self.level + " has no solution"
 
    def checkLevel(self, level):
       # We should check to see that it's a valid level url, or even just in the right format
@@ -171,7 +172,7 @@ def shuf(args, name):
             sendmsg(channel, "You have to solve the other level first, silly.")
             sendmsg(channel, shuffles[-1].level)
             return
-      shuffles.append(Shuffle(args[2]))
+      shuffles.append(Shuffle(args[2], len(shuffles) + 1))
       f = open(shufflePath, "wb")
       cPickle.dump(shuffles, f)
       f.close()
@@ -186,17 +187,17 @@ def shuf(args, name):
    elif args[1] == 'last' and len(args) == 2:
       try:
          if shuffles[-1].solution != "":
-            sendmsg(channel, shuffles[-1].__repr__())
+            sendmsg(channel, str(shuffles[-1]))
          elif shuffles[-2].solution != "":
-            sendmsg(channel, shuffles[-2].__repr__())
+            sendmsg(channel, str(shuffles[-2]))
          else:
             sendmsg(channel, "Something went wrong")
       except Exception:
          sendmsg(channel, "No solution could be found.")
-   elif args[1] == 'last' and len(args) == 3:
+   elif args[1] == 'find' and len(args) == 3:
       try:
          solutionNum = int(args[2])
-         sendmsg(channel, shuffles[-solutionNum].__repr__())
+         sendmsg(channel, str(shuffles[solutionNum - 1]))
       except Exception:
          sendmsg(channel, "Entry doesn't exist or invalid syntax.")
    else:

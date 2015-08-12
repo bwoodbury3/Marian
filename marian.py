@@ -5,6 +5,7 @@ import cPickle
 import pig
 import hashlib
 import logging
+import urllib2
  
 from random import randint
 
@@ -74,6 +75,7 @@ def main():
    addCommand("marian", "Say hello!", marian, False) #This command probably should not be included in !help
    addCommand("hello", "I will greet you.", hello, False) #This command probably should not be included in !help
    addCommand("shuf", "Access the ChatShuffle2.0", shuf, True)
+   addCommand("count", "Get the piece count for a design ID", count, True)
    addCommand("inputTest", "test for input", inputTest, False)
    addCommand("sandwich", "Easter Egg", sandwich, False)
    addCommand("sudosandwich", "Easter Egg", sudosandwich, False)
@@ -256,6 +258,19 @@ def shuf(args, name, destination):
          sendmsg(destination, "Entry doesn't exist or invalid syntax.")
    else:
       sendmsg(destination, "Invalid command syntax.")
+
+def count(args, name, destination):
+   try:
+      if len(args) == 2:
+         designID = args[1]
+         url = urllib2.urlopen("http://fc.sk89q.com/design?designId=" + designID)
+         html = url.read()
+         countLocation1 = html.rfind("<th>Total:</th>") + 20
+         countLocation2 = html.index("</td>", countLocation1)
+         pieceCount = "Piece count for ID=" + designID + ": " + html[countLocation1 : countLocation2]
+         sendmsg(destination, pieceCount)
+   except Exception as e:
+      print(e)
 
 def playPig(args, name, destination):
    #We don't want to play a game in the mian channel, it will annoy people

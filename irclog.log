@@ -881,3 +881,548 @@
 
 2015-08-11 19:52:24,881 rian: !quit shutdown99marian
 
+2015-08-12 12:22:36,072 polar.coldfront.net NOTICE AUTH : *** Looking up your hostname...
+
+2015-08-12 12:22:36,190 polar.coldfront.net NOTICE AUTH : *** Found your hostname
+
+2015-08-12 12:22:36,566 polar.coldfront.net 251 marian : There are 8 users and 1350 invisible on 6 servers
+:polar.coldfront.net 252 marian 14 :operator(s) online
+:polar.coldfront.net 254 marian 1702 :channels formed
+:polar.coldfront.net 255 marian :I have 240 clients and 1 servers
+:polar.coldfront.net 265 marian :Current Local Users: 240  Max: 476
+:polar.coldfront.net 266 marian :Current Global Users: 1358  Max: 4005
+:polar.coldfront.net 375 marian :- polar.coldfront.net Message of the Day - 
+:polar.coldfront.net 372 marian :- 3/5/2012 15:10
+:polar.coldfront.net 372 marian :- Founded May 10th, 2002                                                           
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- The Coldfront Network is dedicated to gaming community clans and
+:polar.coldfront.net 372 marian :- guilds. Our primary goal and interest is to make YOU, our guest
+:polar.coldfront.net 372 marian :- feel at home on our network. We try and keep the rules very simple
+:polar.coldfront.net 372 marian :- to allow for enjoyment and a good chatting environment.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- RULES: Please use the /rules command. Basic summary: play nice.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Individual channels may have additional rules that you must also
+:polar.coldfront.net 372 marian :- abide by if you wish to use them.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Please respect our other guests on the network and all will be well.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- We do reserve the right to deny anyone access to the Coldfront Network.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Please visit http://www.coldfront.net/privacy-policy for our 
+:polar.coldfront.net 372 marian :- privacy policy.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:pola
+2015-08-12 12:22:36,584 - IRC Server List
+: polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- irc.coldfront.net (random server)
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- frozen.coldfront.net    Dallas, TX
+:polar.coldfront.net 372 marian :- polar.coldfront.net     Newark, NJ
+:polar.coldfront.net 372 marian :- stark.coldfront.net     Fremont, CA
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- ice.coldfront.net       Amsterdam,NL
+:polar.coldfront.net 372 marian :- snow.coldfront.net      London, UK
+:polar.coldfront.net 372 marian :- burizado.coldfront.net  Tokyo, JP
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Ports 6667, 8080 and SSL 7778
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- NOTE: All server to server communication is encrypted with SSL
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- Services
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- /NickServ help commands - /ns may be substituted
+:polar.coldfront.net 372 marian :- /ChanServ help commands - /cs may be substituted
+:polar.coldfront.net 372 marian :- /MemoServ help commands - /ms may be substituted
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- IRC Staff
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Server Admins:
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :-      Mag        
+2015-08-12 12:22:36,601 polar.coldfront.net 372 marian : -      Merlin     - Server Admin  - I eat Harry Potter for breakfast
+:polar.coldfront.net 372 marian :- 	     
+:polar.coldfront.net 372 marian :- IRCops:
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :-      FrostByghte - Owner, Coldfront LLC
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :-      \ aka BackSlash   - Because pronouncability is for MVWTXLFPKs.
+:polar.coldfront.net 372 marian :-      Citizenkane       - Pestering FrostByghte forever
+:polar.coldfront.net 372 marian :-      Diaego            - Radio monkey
+:polar.coldfront.net 372 marian :-      Entity            - Purr! =^.^=
+:polar.coldfront.net 372 marian :-      gluon             - morn
+:polar.coldfront.net 372 marian :-      Lane/Rainbooty    - I am the mooodle of a moodern major general!
+:polar.coldfront.net 372 marian :-      PepsiTab          - Look Mister Bubbles, it's an ANGEL!
+:polar.coldfront.net 372 marian :-      Renril            - Meow! =^.^=
+:polar.coldfront.net 372 marian :-      Singe             - frost is not a hillbilly
+:polar.coldfront.net 372 marian :-      syberghost        - Hello, I am syberghost and I kill u fadder
+:polar.coldfront.net 372 marian :-      Vertex            - I'm graduating on Coldfront
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Join #irchelp for any network problems you may need help with.
+:polar.coldfront.net 372 marian :- Use /helpop for help with commands, user modes and channels modes.
+:polar.coldfront.net 372 marian :- Please email irc@coldfront.net with any questions or concerns.  
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 mar
+2015-08-12 12:22:36,766 marian: #fctest
+:polar.coldfront.net 353 marian = #fctest :marian rian @yourname 
+:polar.coldfront.net 366 marian #fctest :End of /NAMES list.
+
+2015-08-12 12:22:45,608 rian: try now
+
+2015-08-12 12:23:28,680 yourname: uJellyBrah
+
+2015-08-12 12:23:54,611 uJellyBrah: !sandwich
+
+2015-08-12 12:24:05,605 uJellyBrah: !sudosandwich
+
+2015-08-12 12:24:13,752 rian: :)
+
+2015-08-12 12:24:20,608 uJellyBrah: i figured it out :)
+
+2015-08-12 12:24:30,785 uJellyBrah: !help
+
+2015-08-12 12:24:43,852 rian: !sandwich
+
+2015-08-12 12:24:47,607 rian: !sandwich
+
+2015-08-12 12:24:50,838 uJellyBrah: that made my day :)
+
+2015-08-12 12:24:51,994 rian: !sandwich
+
+2015-08-12 12:24:57,783 rian: !sandwich
+
+2015-08-12 12:24:59,605 uJellyBrah: !sandwich
+
+2015-08-12 12:25:10,608 uJellyBrah: is marian male or female
+
+2015-08-12 12:25:14,168 uJellyBrah: !sex
+
+2015-08-12 12:25:18,457 rian: female
+
+2015-08-12 12:25:28,608 uJellyBrah: ok lol then i dont feel bad
+
+2015-08-12 12:25:31,270 uJellyBrah: lol jkjk
+
+2015-08-12 12:25:34,878 uJellyBrah: #notsexist
+
+2015-08-12 12:25:44,601 uJellyBrah: !sudosandwich
+
+2015-08-12 12:25:50,387 uJellyBrah: thank you marian
+
+2015-08-12 12:25:56,009 rian: there's only one of those messages
+
+2015-08-12 12:26:16,346 uJellyBrah: lol can i have a special whitelist privilege to sandwich lol
+
+2015-08-12 12:26:36,609 rian: we only know how to whitelist by username
+
+2015-08-12 12:26:39,345 rian: so far
+
+2015-08-12 12:26:45,704 uJellyBrah: where it says "Sure thing! Coming right up Jelly!"
+
+2015-08-12 12:26:49,605 rian: so, yes, but if someone pretends to be you
+
+2015-08-12 12:26:55,263 rian: then they would also have access
+
+2015-08-12 12:27:02,150 rian: that's why quit is password protected
+
+2015-08-12 12:27:03,835 rian: !quit
+
+2015-08-12 12:27:20,605 uJellyBrah: oh yeah one sec let me register my nick
+
+2015-08-12 12:27:37,604 rian: how do you do that? I'd like to do that also
+
+2015-08-12 12:27:57,605 rian: !quit shutdown99marian
+
+2015-08-12 14:06:32,861 polar.coldfront.net NOTICE AUTH : *** Looking up your hostname...
+
+2015-08-12 14:06:32,944 polar.coldfront.net NOTICE AUTH : *** Found your hostname
+
+2015-08-12 14:06:33,331 polar.coldfront.net 251 marian : There are 8 users and 1341 invisible on 6 servers
+:polar.coldfront.net 252 marian 14 :operator(s) online
+:polar.coldfront.net 254 marian 1726 :channels formed
+:polar.coldfront.net 255 marian :I have 242 clients and 1 servers
+:polar.coldfront.net 265 marian :Current Local Users: 242  Max: 476
+:polar.coldfront.net 266 marian :Current Global Users: 1349  Max: 4005
+:polar.coldfront.net 375 marian :- polar.coldfront.net Message of the Day - 
+:polar.coldfront.net 372 marian :- 3/5/2012 15:10
+:polar.coldfront.net 372 marian :- Founded May 10th, 2002                                                           
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- The Coldfront Network is dedicated to gaming community clans and
+:polar.coldfront.net 372 marian :- guilds. Our primary goal and interest is to make YOU, our guest
+:polar.coldfront.net 372 marian :- feel at home on our network. We try and keep the rules very simple
+:polar.coldfront.net 372 marian :- to allow for enjoyment and a good chatting environment.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- RULES: Please use the /rules command. Basic summary: play nice.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Individual channels may have additional rules that you must also
+:polar.coldfront.net 372 marian :- abide by if you wish to use them.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Please respect our other guests on the network and all will be well.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- We do reserve the right to deny anyone access to the Coldfront Network.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Please visit http://www.coldfront.net/privacy-policy for our 
+:polar.coldfront.net 372 marian :- privacy policy.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:pola
+2015-08-12 14:06:33,368 - IRC Server List
+: polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- irc.coldfront.net (random server)
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- frozen.coldfront.net    Dallas, TX
+:polar.coldfront.net 372 marian :- polar.coldfront.net     Newark, NJ
+:polar.coldfront.net 372 marian :- stark.coldfront.net     Fremont, CA
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- ice.coldfront.net       Amsterdam,NL
+:polar.coldfront.net 372 marian :- snow.coldfront.net      London, UK
+:polar.coldfront.net 372 marian :- burizado.coldfront.net  Tokyo, JP
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Ports 6667, 8080 and SSL 7778
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- NOTE: All server to server communication is encrypted with SSL
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- Services
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- /NickServ help commands - /ns may be substituted
+:polar.coldfront.net 372 marian :- /ChanServ help commands - /cs may be substituted
+:polar.coldfront.net 372 marian :- /MemoServ help commands - /ms may be substituted
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- IRC Staff
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Server Admins:
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :-      Mag        
+2015-08-12 14:06:33,398 polar.coldfront.net 372 marian : -      Merlin     - Server Admin  - I eat Harry Potter for breakfast
+:polar.coldfront.net 372 marian :- 	     
+:polar.coldfront.net 372 marian :- IRCops:
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :-      FrostByghte - Owner, Coldfront LLC
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :-      \ aka BackSlash   - Because pronouncability is for MVWTXLFPKs.
+:polar.coldfront.net 372 marian :-      Citizenkane       - Pestering FrostByghte forever
+:polar.coldfront.net 372 marian :-      Diaego            - Radio monkey
+:polar.coldfront.net 372 marian :-      Entity            - Purr! =^.^=
+:polar.coldfront.net 372 marian :-      gluon             - morn
+:polar.coldfront.net 372 marian :-      Lane/Rainbooty    - I am the mooodle of a moodern major general!
+:polar.coldfront.net 372 marian :-      PepsiTab          - Look Mister Bubbles, it's an ANGEL!
+:polar.coldfront.net 372 marian :-      Renril            - Meow! =^.^=
+:polar.coldfront.net 372 marian :-      Singe             - frost is not a hillbilly
+:polar.coldfront.net 372 marian :-      syberghost        - Hello, I am syberghost and I kill u fadder
+:polar.coldfront.net 372 marian :-      Vertex            - I'm graduating on Coldfront
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Join #irchelp for any network problems you may need help with.
+:polar.coldfront.net 372 marian :- Use /helpop for help with commands, user modes and channels modes.
+:polar.coldfront.net 372 marian :- Please email irc@coldfront.net with any questions or concerns.  
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 mar
+2015-08-12 14:06:33,516 marian: #fctest
+:polar.coldfront.net 353 marian = #fctest :marian rian @uJellyBrah 
+:polar.coldfront.net 366 marian #fctest :End of /NAMES list.
+
+2015-08-12 14:06:52,549 rian: !count 12150406
+
+2015-08-12 14:07:25,490 polar.coldfront.net NOTICE AUTH : *** Looking up your hostname...
+:polar.coldfront.net NOTICE AUTH :*** Found your hostname (cached)
+
+2015-08-12 14:07:26,528 polar.coldfront.net 251 marian : There are 8 users and 1341 invisible on 6 servers
+:polar.coldfront.net 252 marian 14 :operator(s) online
+:polar.coldfront.net 254 marian 1726 :channels formed
+:polar.coldfront.net 255 marian :I have 242 clients and 1 servers
+:polar.coldfront.net 265 marian :Current Local Users: 242  Max: 476
+:polar.coldfront.net 266 marian :Current Global Users: 1349  Max: 4005
+:polar.coldfront.net 375 marian :- polar.coldfront.net Message of the Day - 
+:polar.coldfront.net 372 marian :- 3/5/2012 15:10
+:polar.coldfront.net 372 marian :- Founded May 10th, 2002                                                           
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- The Coldfront Network is dedicated to gaming community clans and
+:polar.coldfront.net 372 marian :- guilds. Our primary goal and interest is to make YOU, our guest
+:polar.coldfront.net 372 marian :- feel at home on our network. We try and keep the rules very simple
+:polar.coldfront.net 372 marian :- to allow for enjoyment and a good chatting environment.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- RULES: Please use the /rules command. Basic summary: play nice.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Individual channels may have additional rules that you must also
+:polar.coldfront.net 372 marian :- abide by if you wish to use them.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Please respect our other guests on the network and all will be well.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- We do reserve the right to deny anyone access to the Coldfront Network.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Please visit http://www.coldfront.net/privacy-policy for our 
+:polar.coldfront.net 372 marian :- privacy policy.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:pola
+2015-08-12 14:07:26,568 - IRC Server List
+: polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- irc.coldfront.net (random server)
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- frozen.coldfront.net    Dallas, TX
+:polar.coldfront.net 372 marian :- polar.coldfront.net     Newark, NJ
+:polar.coldfront.net 372 marian :- stark.coldfront.net     Fremont, CA
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- ice.coldfront.net       Amsterdam,NL
+:polar.coldfront.net 372 marian :- snow.coldfront.net      London, UK
+:polar.coldfront.net 372 marian :- burizado.coldfront.net  Tokyo, JP
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Ports 6667, 8080 and SSL 7778
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- NOTE: All server to server communication is encrypted with SSL
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- Services
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- /NickServ help commands - /ns may be substituted
+:polar.coldfront.net 372 marian :- /ChanServ help commands - /cs may be substituted
+:polar.coldfront.net 372 marian :- /MemoServ help commands - /ms may be substituted
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- IRC Staff
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Server Admins:
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :-      Mag        
+2015-08-12 14:07:26,598 polar.coldfront.net 372 marian : -      Merlin     - Server Admin  - I eat Harry Potter for breakfast
+:polar.coldfront.net 372 marian :- 	     
+:polar.coldfront.net 372 marian :- IRCops:
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :-      FrostByghte - Owner, Coldfront LLC
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :-      \ aka BackSlash   - Because pronouncability is for MVWTXLFPKs.
+:polar.coldfront.net 372 marian :-      Citizenkane       - Pestering FrostByghte forever
+:polar.coldfront.net 372 marian :-      Diaego            - Radio monkey
+:polar.coldfront.net 372 marian :-      Entity            - Purr! =^.^=
+:polar.coldfront.net 372 marian :-      gluon             - morn
+:polar.coldfront.net 372 marian :-      Lane/Rainbooty    - I am the mooodle of a moodern major general!
+:polar.coldfront.net 372 marian :-      PepsiTab          - Look Mister Bubbles, it's an ANGEL!
+:polar.coldfront.net 372 marian :-      Renril            - Meow! =^.^=
+:polar.coldfront.net 372 marian :-      Singe             - frost is not a hillbilly
+:polar.coldfront.net 372 marian :-      syberghost        - Hello, I am syberghost and I kill u fadder
+:polar.coldfront.net 372 marian :-      Vertex            - I'm graduating on Coldfront
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Join #irchelp for any network problems you may need help with.
+:polar.coldfront.net 372 marian :- Use /helpop for help with commands, user modes and channels modes.
+:polar.coldfront.net 372 marian :- Please email irc@coldfront.net with any questions or concerns.  
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 mar
+2015-08-12 14:07:26,713 marian: #fctest
+:polar.coldfront.net 353 marian = #fctest :marian rian @uJellyBrah 
+:polar.coldfront.net 366 marian #fctest :End of /NAMES list.
+
+2015-08-12 14:07:31,545 rian: !count 12150406
+
+2015-08-12 14:08:26,775 polar.coldfront.net NOTICE AUTH : *** Looking up your hostname...
+:polar.coldfront.net NOTICE AUTH :*** Found your hostname (cached)
+
+2015-08-12 14:08:26,961 polar.coldfront.net 251 marian : There are 8 users and 1338 invisible on 6 servers
+:polar.coldfront.net 252 marian 14 :operator(s) online
+:polar.coldfront.net 254 marian 1726 :channels formed
+:polar.coldfront.net 255 marian :I have 242 clients and 1 servers
+:polar.coldfront.net 265 marian :Current Local Users: 242  Max: 476
+:polar.coldfront.net 266 marian :Current Global Users: 1346  Max: 4005
+:polar.coldfront.net 375 marian :- polar.coldfront.net Message of the Day - 
+:polar.coldfront.net 372 marian :- 3/5/2012 15:10
+:polar.coldfront.net 372 marian :- Founded May 10th, 2002                                                           
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- The Coldfront Network is dedicated to gaming community clans and
+:polar.coldfront.net 372 marian :- guilds. Our primary goal and interest is to make YOU, our guest
+:polar.coldfront.net 372 marian :- feel at home on our network. We try and keep the rules very simple
+:polar.coldfront.net 372 marian :- to allow for enjoyment and a good chatting environment.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- RULES: Please use the /rules command. Basic summary: play nice.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Individual channels may have additional rules that you must also
+:polar.coldfront.net 372 marian :- abide by if you wish to use them.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Please respect our other guests on the network and all will be well.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- We do reserve the right to deny anyone access to the Coldfront Network.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Please visit http://www.coldfront.net/privacy-policy for our 
+:polar.coldfront.net 372 marian :- privacy policy.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:pola
+2015-08-12 14:08:27,000 - IRC Server List
+: polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- irc.coldfront.net (random server)
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- frozen.coldfront.net    Dallas, TX
+:polar.coldfront.net 372 marian :- polar.coldfront.net     Newark, NJ
+:polar.coldfront.net 372 marian :- stark.coldfront.net     Fremont, CA
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- ice.coldfront.net       Amsterdam,NL
+:polar.coldfront.net 372 marian :- snow.coldfront.net      London, UK
+:polar.coldfront.net 372 marian :- burizado.coldfront.net  Tokyo, JP
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Ports 6667, 8080 and SSL 7778
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- NOTE: All server to server communication is encrypted with SSL
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- Services
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- /NickServ help commands - /ns may be substituted
+:polar.coldfront.net 372 marian :- /ChanServ help commands - /cs may be substituted
+:polar.coldfront.net 372 marian :- /MemoServ help commands - /ms may be substituted
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- IRC Staff
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Server Admins:
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :-      Mag        
+2015-08-12 14:08:27,029 polar.coldfront.net 372 marian : -      Merlin     - Server Admin  - I eat Harry Potter for breakfast
+:polar.coldfront.net 372 marian :- 	     
+:polar.coldfront.net 372 marian :- IRCops:
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :-      FrostByghte - Owner, Coldfront LLC
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :-      \ aka BackSlash   - Because pronouncability is for MVWTXLFPKs.
+:polar.coldfront.net 372 marian :-      Citizenkane       - Pestering FrostByghte forever
+:polar.coldfront.net 372 marian :-      Diaego            - Radio monkey
+:polar.coldfront.net 372 marian :-      Entity            - Purr! =^.^=
+:polar.coldfront.net 372 marian :-      gluon             - morn
+:polar.coldfront.net 372 marian :-      Lane/Rainbooty    - I am the mooodle of a moodern major general!
+:polar.coldfront.net 372 marian :-      PepsiTab          - Look Mister Bubbles, it's an ANGEL!
+:polar.coldfront.net 372 marian :-      Renril            - Meow! =^.^=
+:polar.coldfront.net 372 marian :-      Singe             - frost is not a hillbilly
+:polar.coldfront.net 372 marian :-      syberghost        - Hello, I am syberghost and I kill u fadder
+:polar.coldfront.net 372 marian :-      Vertex            - I'm graduating on Coldfront
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Join #irchelp for any network problems you may need help with.
+:polar.coldfront.net 372 marian :- Use /helpop for help with commands, user modes and channels modes.
+:polar.coldfront.net 372 marian :- Please email irc@coldfront.net with any questions or concerns.  
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 mar
+2015-08-12 14:08:27,148 marian: #fctest
+:polar.coldfront.net 353 marian = #fctest :marian rian @uJellyBrah 
+:polar.coldfront.net 366 marian #fctest :End of /NAMES list.
+
+2015-08-12 14:08:31,316 rian: !count 12150406
+
+2015-08-12 14:08:35,545 rian: BOOM
+
+2015-08-12 14:08:59,543 rian: !count 12123537
+
+2015-08-12 14:09:06,128 rian: omggggggggg
+
+2015-08-12 14:09:51,207 polar.coldfront.net NOTICE AUTH : *** Looking up your hostname...
+:polar.coldfront.net NOTICE AUTH :*** Found your hostname (cached)
+
+2015-08-12 14:09:52,323 polar.coldfront.net 251 marian : There are 8 users and 1334 invisible on 6 servers
+:polar.coldfront.net 252 marian 14 :operator(s) online
+:polar.coldfront.net 254 marian 1722 :channels formed
+:polar.coldfront.net 255 marian :I have 242 clients and 1 servers
+:polar.coldfront.net 265 marian :Current Local Users: 242  Max: 476
+:polar.coldfront.net 266 marian :Current Global Users: 1342  Max: 4005
+:polar.coldfront.net 375 marian :- polar.coldfront.net Message of the Day - 
+:polar.coldfront.net 372 marian :- 3/5/2012 15:10
+:polar.coldfront.net 372 marian :- Founded May 10th, 2002                                                           
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- The Coldfront Network is dedicated to gaming community clans and
+:polar.coldfront.net 372 marian :- guilds. Our primary goal and interest is to make YOU, our guest
+:polar.coldfront.net 372 marian :- feel at home on our network. We try and keep the rules very simple
+:polar.coldfront.net 372 marian :- to allow for enjoyment and a good chatting environment.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- RULES: Please use the /rules command. Basic summary: play nice.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Individual channels may have additional rules that you must also
+:polar.coldfront.net 372 marian :- abide by if you wish to use them.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Please respect our other guests on the network and all will be well.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- We do reserve the right to deny anyone access to the Coldfront Network.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Please visit http://www.coldfront.net/privacy-policy for our 
+:polar.coldfront.net 372 marian :- privacy policy.
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:pola
+2015-08-12 14:09:52,368 - IRC Server List
+: polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- irc.coldfront.net (random server)
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- frozen.coldfront.net    Dallas, TX
+:polar.coldfront.net 372 marian :- polar.coldfront.net     Newark, NJ
+:polar.coldfront.net 372 marian :- stark.coldfront.net     Fremont, CA
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- ice.coldfront.net       Amsterdam,NL
+:polar.coldfront.net 372 marian :- snow.coldfront.net      London, UK
+:polar.coldfront.net 372 marian :- burizado.coldfront.net  Tokyo, JP
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Ports 6667, 8080 and SSL 7778
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- NOTE: All server to server communication is encrypted with SSL
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- Services
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- /NickServ help commands - /ns may be substituted
+:polar.coldfront.net 372 marian :- /ChanServ help commands - /cs may be substituted
+:polar.coldfront.net 372 marian :- /MemoServ help commands - /ms may be substituted
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- IRC Staff
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Server Admins:
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :-      Mag        
+2015-08-12 14:09:52,407 polar.coldfront.net 372 marian : -      Merlin     - Server Admin  - I eat Harry Potter for breakfast
+:polar.coldfront.net 372 marian :- 	     
+:polar.coldfront.net 372 marian :- IRCops:
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :-      FrostByghte - Owner, Coldfront LLC
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :-      \ aka BackSlash   - Because pronouncability is for MVWTXLFPKs.
+:polar.coldfront.net 372 marian :-      Citizenkane       - Pestering FrostByghte forever
+:polar.coldfront.net 372 marian :-      Diaego            - Radio monkey
+:polar.coldfront.net 372 marian :-      Entity            - Purr! =^.^=
+:polar.coldfront.net 372 marian :-      gluon             - morn
+:polar.coldfront.net 372 marian :-      Lane/Rainbooty    - I am the mooodle of a moodern major general!
+:polar.coldfront.net 372 marian :-      PepsiTab          - Look Mister Bubbles, it's an ANGEL!
+:polar.coldfront.net 372 marian :-      Renril            - Meow! =^.^=
+:polar.coldfront.net 372 marian :-      Singe             - frost is not a hillbilly
+:polar.coldfront.net 372 marian :-      syberghost        - Hello, I am syberghost and I kill u fadder
+:polar.coldfront.net 372 marian :-      Vertex            - I'm graduating on Coldfront
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- Join #irchelp for any network problems you may need help with.
+:polar.coldfront.net 372 marian :- Use /helpop for help with commands, user modes and channels modes.
+:polar.coldfront.net 372 marian :- Please email irc@coldfront.net with any questions or concerns.  
+:polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 mar
+2015-08-12 14:09:52,424 - We hope you enjoy your time on Coldfront IRC: polar.coldfront.net 372 marian :- 
+:polar.coldfront.net 372 marian :- -------------------------------------------------------------------
+:polar.coldfront.net 376 marian :End of /MOTD command.
+:marian MODE marian :+iwx
+:Global!services@coldfront.net NOTICE marian :[Logon News - Feb 14 2014] Check out some of our community channels! | Space Merchant Realms: #smr | Radio: #DigitalMayhem #eve-radio #newedenradio #subspace-radio | EVE: #eve #evetv | PotBS: #burningsea | Star Trek Online: #sto | Champions Online: #championsonline | CyberNations: #CyberNations | Star Wars: #tor #swtor | Project Terra: #project-terra | TV: #totalgamingtv | PixelNations: #pixelnations |
+
+2015-08-12 14:09:52,828 marian: #fctest
+:polar.coldfront.net 353 marian = #fctest :marian rian @uJellyBrah 
+:polar.coldfront.net 366 marian #fctest :End of /NAMES list.
+
+2015-08-12 14:10:06,549 rian: !count 12123537
+
+2015-08-12 14:10:40,543 rian: !quit shutdown99marian
+

@@ -3,9 +3,11 @@ import time
 import sys
 import cPickle
 import pig
+import hashlib
  
 from random import randint
- 
+
+hashedShutdownPassword = '1cd024d7d690559cb63a8fc33173ad3e76233c7843a131ca98250dc9a984253bdc586e0069261881ce1cbd30e51a98888740f8bcfcb342e453bc17bed1e64363'
 server = 'polar.coldfront.net'
 channel = '#fctest'
 nick = 'marian'
@@ -14,7 +16,7 @@ port = 6667
 ircsock = socket.socket()
 shufflePath = "shuffle.p"
 hellomessages = ['How you doin there, {name}?', 'Sup, {name}?', 'You must be {name}.', 'Well, if it isn\'t {name}.']
- 
+
 ircsock.connect((server, port))
 ircsock.send("PASS " + passw + "\r\n")
 ircsock.send("NICK " + nick + "\r\n")
@@ -164,10 +166,15 @@ def quitIRC(args, name, destination):
 ##      sys.exit(name)
 
    #Ok, the whitelist is bugging out and not letting me quit. Let's leave that for later
-   print("Leaving")
-   sendmsg(channel, "Goodbye!") #Say to the whole channel marian is leaving
-   ircsock.send('QUIT\r\n')
-   sys.exit(name)
+   if len(args) == 2:
+      hashedPass = hashlib.sha512(args[1] + "thisissomesaltforthepasswordlala").hexdigest()
+      if hashedPass == hashedShutdownPassword:
+         sendmsg(destination, "Password confirmed, shutting down.")
+         print("Leaving")
+         sendmsg(channel, "Goodbye!") #Say to the whole channel marian is leaving
+         ircsock.send('QUIT\r\n')
+         sys.exit(name)
+   sendmsg(destination, "Invalid password!")
  
 def marian(args, name, destination):
    sendmsg(destination, "Yes? Can I help you?")

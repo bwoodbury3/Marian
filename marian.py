@@ -4,6 +4,7 @@ import sys
 import cPickle
 import pig
 import hashlib
+import logging
  
 from random import randint
 
@@ -74,10 +75,12 @@ def main():
    addCommand("shuf", "Access the ChatShuffle2.0", shuf)
    addCommand("pig", "Play Pig against me", playPig)
 
+   logging.basicConfig(format='%(asctime)s %(message)s', filename='irclog.log', level=logging.DEBUG)
+
    while True:
       data = ircsock.recv(2048)
       print (data)
- 
+
       if data.find("PING") != -1:
          ircsock.send("PONG :" + data.split(':')[1])
          print("I ponged back")
@@ -95,9 +98,15 @@ def main():
 def parsemessage(data, ircsock, channel):
    msgParts = data.split(':', 2)
    cmd = msgParts[2]
+   name = ""
+
+   try:
+      name = msgParts[1].split('!')[0]
+   except Exception:
+      logging.warning('Message sent but no name found!')
+   logging.info(name + ": " + cmd)
 
    if cmd[0] == '!':
-      name = msgParts[1].split('!')[0]
       print name + " | sent this message"
       source = (msgParts[1].split())[2]
       
@@ -118,7 +127,10 @@ def parsemessage(data, ircsock, channel):
 
 def randomitemfrom(alist):
    return alist[randint(0, len(alist) - 1)]
- 
+
+def log(message, name):
+   pass
+
 ##def sendmsgtofc(msg):
 ##   sendmsg("#fctest", msg)
    

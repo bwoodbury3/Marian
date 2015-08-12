@@ -23,8 +23,8 @@ ircsock.send("NICK " + nick + "\r\n")
 ircsock.send("USER " + nick + " " + nick + " " + nick + " : This is a bot that I really really hope will work\r\n")
 
 commands = []; #List of possible commands
-               #Each element is a tuple in the form of [command name, command description, callback function]
-               #Add commands with newCommand(name, description, callback)
+               #Each element is a tuple in the form of [command name, command description, callback function, displayInHelp]
+               #Add commands with newCommand(name, description, callback, display) and if display is True, it shows in help, and viceversa
 
 class Shuffle(object):
    def __init__(self, level, entryNumber):
@@ -67,12 +67,12 @@ except Exception as e:
 
 def main():
    #Here the commands are added
-   addCommand("help", "Displays this command dialog.", displayHelp)
-   addCommand("quit", "Causes the bot to quit. Be prepared to authenticate with a password.", quitIRC)
-   addCommand("marian", "Say hello!", marian) #This command probably should not be included in !help
-   addCommand("hello", "I will greet you.", hello) #This command probably should not be included in !help
-   addCommand("shuf", "Access the ChatShuffle2.0", shuf)
-   addCommand("pig", "Play Pig against me", playPig)
+   addCommand("help", "Displays this command dialog.", displayHelp, True)
+   addCommand("quit", "Causes the bot to quit. Be prepared to authenticate with a password.", quitIRC, False)
+   addCommand("marian", "Say hello!", marian, False) #This command probably should not be included in !help
+   addCommand("hello", "I will greet you.", hello, False) #This command probably should not be included in !help
+   addCommand("shuf", "Access the ChatShuffle2.0", shuf, True)
+   addCommand("inputTest", "test for input", inputTest, False)
 
    while True:
       data = ircsock.recv(2048)
@@ -126,8 +126,8 @@ def sendmsg(dest, msg, name = "<insert name>", nick = "<insert nick>"): # This i
    msg = reverseEscape(msg, name, nick)  #The function will escape certain special markup
    ircsock.send("PRIVMSG "+ dest +" :"+ msg +"\n")
 
-def addCommand(name, description, callback):
-   commands.append((name, description, callback))
+def addCommand(name, description, callback, display):
+   commands.append((name, description, callback, display))
 
 def findCommandTuple(name):
    for command in commands:
@@ -143,10 +143,16 @@ def reverseEscape(message, name, nick): #Not sure what to call it, feel free to 
    return string
 
 #Hopefully, a master function for waiting for and taking input
-#It takes a parameter 'name', and adds it the the input List
-usersGivingInput = []
 def getInput(name):
-   usersGivingInput.append(name)
+   #Now run an infinite loop to halt the code that called this function until input can be returned
+   inputRecieved = False
+   while inputRecieved == False:
+      data = ircsock.recv(2048)
+      msgParts = data.split(':', 2)
+      cmd = msgParts[2]
+      sourceName = msgParts[1].split('!')[0]
+      if sourceName == name:
+         return cmd
    
 #COMMAND CALLBACK FUNCTIONS after this point
 #All functions get passed name, MAKE SURE THEY ALL INCLUDE A PARAMETER FOR NAME
@@ -156,7 +162,8 @@ def displayHelp(args, name, destination):
    #I'm sure there is some sort of printf for easy formating, but I rather do it manually
    sendmsg(destination, "List of commands you can use:")
    for command in commands:
-      sendmsg(destination, "    !" + command[0] + " | " + command[1])
+      if command[3]:
+         sendmsg(destination, "    !" + command[0] + " | " + command[1])
 
 def quitIRC(args, name, destination):
 ##   if (name == "rian" or name == "marjo"): #We may have to expand this to a full whitelist later
@@ -243,5 +250,10 @@ def playPig(args, name, destination):
       pass
    else:
       sendmsg(destination, "I am sorry {name}, you can only play that game in a private chat with me. Type \"/query {nick} !pig\" to play.", name, nick)
+
+def inputTest(args, name, destination):
+   sendmsg(destination, "{name} must now send input", name)
+   inp = getInput(name)
+   sendmsg(destination, "Input from {name}: " + inp, name)
 
 main()

@@ -262,7 +262,11 @@ def shuf(args, name, destination):
 def count(args, name, destination):
    try:
       if len(args) == 2:
-         designID = args[1]
+         designID = args[1].strip()
+         if "design" in designID:
+            designID = designID[designID.index("=") + 1:]
+         else:
+            designID = args[1]
          url = urllib2.urlopen("http://fc.sk89q.com/design?designId=" + designID)
          html = url.read()
          countLocation1 = html.rfind("<th>Total:</th>") + 20

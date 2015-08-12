@@ -143,7 +143,7 @@ def addCommand(name, description, callback):
 
 def findCommandTuple(name):
    for command in commands:
-      if command[0] == name:
+      if command[0].upper() == name.upper():
          return command
  
    return False #If nothing was found, it will get to here, where it will return False

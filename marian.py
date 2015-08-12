@@ -2,7 +2,6 @@ import socket
 import time
 import sys
 import cPickle
-import pig
 import hashlib
  
 from random import randint
@@ -72,7 +71,17 @@ def main():
    addCommand("marian", "Say hello!", marian, False) #This command probably should not be included in !help
    addCommand("hello", "I will greet you.", hello, False) #This command probably should not be included in !help
    addCommand("shuf", "Access the ChatShuffle2.0", shuf, True)
+<<<<<<< Updated upstream
    addCommand("inputTest", "test for input", inputTest, False)
+=======
+
+   #Easter Eggs
+   addCommand("sandwich", "Easter Egg", sandwich, False)
+   addCommand("sudosandwich", "Easter Egg", sudosandwich, False)
+   addCommand("tweak", "Easter Egg", tweak, False)
+
+   logging.basicConfig(format='%(asctime)s %(message)s', filename='irclog.log', level=logging.DEBUG)
+>>>>>>> Stashed changes
 
    while True:
       data = ircsock.recv(2048)
@@ -256,4 +265,16 @@ def inputTest(args, name, destination):
    inp = getInput(name)
    sendmsg(destination, "Input from {name}: " + inp, name)
 
+<<<<<<< Updated upstream
+=======
+def sandwich(args, name, destination):
+   sendmsg(destination, randomitemfrom(sandwichmessages), name)
+
+def sudosandwich(args, name, destination):
+   sendmsg(destination, ".......ok... :(")
+
+def tweak(args, name, destination):
+   sendmsg(destination, "I have tweaked your design, and now it solves. It is wonderful. I wish you could see it.")
+
+>>>>>>> Stashed changes
 main()

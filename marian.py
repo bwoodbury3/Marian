@@ -25,8 +25,9 @@ commands = []; #List of possible commands
                #Add commands with newCommand(name, description, callback)
 
 class Shuffle(object):
-   def __init__(self, level):
+   def __init__(self, level, entryNumber):
       print "Init is called"
+      self.entryNumber = entryNumber
       self.checkLevel(level)
       self.level = level
       self.solution = ""
@@ -196,7 +197,7 @@ def shuf(args, name, destination):
             sendmsg(destination, "You have to solve the other level first, silly.")
             sendmsg(destination, shuffles[-1].level)
             return
-      shuffles.append(Shuffle(args[2]))
+      shuffles.append(Shuffle(args[2], len(shuffles) + 1))
       f = open(shufflePath, "wb")
       cPickle.dump(shuffles, f)
       f.close()
@@ -211,13 +212,19 @@ def shuf(args, name, destination):
    elif args[1] == 'last' and len(args) == 2:
       try:
          if shuffles[-1].solution != "":
-            sendmsg(destination, shuffles[-1].__repr__())
+            sendmsg(destination, str(shuffles[-1]))
          elif shuffles[-2].solution != "":
-            sendmsg(destination, shuffles[-2].__repr__())
+            sendmsg(destination, str(shuffles[-2]))
          else:
-            sendmsg(destination, "Something went wrong")
+            sendmsg(destination, "Something went wrong.")
       except Exception:
          sendmsg(destination, "No solution could be found.")
+   elif args[1] == 'find' and len(args) == 3:
+      try:
+         solutionNum = int(args[2])
+         sendmsg(destination, str(shuffles[solutionNum - 1]))
+      except Exception:
+         sendmsg(destination, "Entry doesn't exist or invalid syntax.")
    else:
       sendmsg(destination, "Invalid command syntax.")
 

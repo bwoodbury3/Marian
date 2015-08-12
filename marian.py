@@ -272,8 +272,13 @@ def count(args, name, destination):
          countLocation1 = html.rfind("<th>Total:</th>") + 20
          countLocation2 = html.index("</td>", countLocation1)
          pieceCount = "Piece count for ID=" + designID + ": " + html[countLocation1 : countLocation2]
+         if len(pieceCount) > 31:
+            raise Exception("this user is an idiot")
          sendmsg(destination, pieceCount)
+      else:
+         sendmsg("Invalid syntax")
    except Exception as e:
+      sendmsg(destination, "Bad input")
       print(e)
 
 def playPig(args, name, destination):

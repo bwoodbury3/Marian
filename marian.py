@@ -17,6 +17,7 @@ port = 6667
 ircsock = socket.socket()
 shufflePath = "shuffle.p"
 hellomessages = ['How you doin there, {name}?', 'Sup, {name}?', 'You must be {name}.', 'Well, if it isn\'t {name}.']
+sandwichmessages = ['You do not have administrator privileges to request a sandwich.', 'No, you sexist.', 'Aww, {name} doesn\'t know how to make a sandwich?']
 
 ircsock.connect((server, port))
 ircsock.send("PASS " + passw + "\r\n")
@@ -74,6 +75,8 @@ def main():
    addCommand("hello", "I will greet you.", hello, False) #This command probably should not be included in !help
    addCommand("shuf", "Access the ChatShuffle2.0", shuf, True)
    addCommand("inputTest", "test for input", inputTest, False)
+   addCommand("sandwich", "Easter Egg", sandwich, False)
+   addCommand("sudosandwich", "Easter Egg", sudosandwich, False)
 
    logging.basicConfig(format='%(asctime)s %(message)s', filename='irclog.log', level=logging.DEBUG)
 
@@ -267,5 +270,11 @@ def inputTest(args, name, destination):
    sendmsg(destination, "{name} must now send input", name)
    inp = getInput(name)
    sendmsg(destination, "Input from {name}: " + inp, name)
+
+def sandwich(args, name, destination):
+   sendmsg(destination, randomitemfrom(sandwichmessages), name)
+
+def sudosandwich(args, name, destination):
+   sendmsg(destination, ".......ok... :(")
 
 main()

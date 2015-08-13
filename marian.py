@@ -75,10 +75,11 @@ def main():
    addCommand("hello", "I will greet you.", hello, False) #This command probably should not be included in !help
    addCommand("shuf", "Access the ChatShuffle2.0", shuf, True)
    addCommand("count", "Get the piece count for a design ID", count, True)
+   addCommand("levelfcml", "Exports a level to fcml", levelfcml, True)
    addCommand("sandwich", "Easter Egg", sandwich, False)
    addCommand("sudosandwich", "Easter Egg", sudosandwich, False)
 
-   logging.basicConfig(format='%(asctime)s %(message)s', filename='irclog.log', level=logging.DEBUG)
+   logging.basicConfig(format='%(asctime)s %(message)s', filename='irclog.log', level=logging.WARNING)
 
    while True:
       data = ircsock.recv(2048)
@@ -278,6 +279,20 @@ def count(args, name, destination):
    except Exception as e:
       sendmsg(destination, "Bad input")
       print(e)
+
+def levelfcml(args, name, destination):
+   try:
+      if len(args) == 2:
+         levelID = args[1].strip()
+         if "level" in levelID:
+            levelID = levelID[levelID.index("=") + 1:]
+         else:
+            levelID = args[1].strip()
+         int(levelID)
+         url = "http://fc.sk89q.com/export?type=level&id={name}&format=fcml"
+         sendmsg(destination, url, levelID)
+   except Exception as e:
+      sendmsg("Invalid levelID")
 
 def inputTest(args, name, destination):
    sendmsg(destination, "{name} must now send input", name)

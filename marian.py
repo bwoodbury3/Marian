@@ -2,7 +2,6 @@ import socket
 import time
 import sys
 import cPickle
-import pig
 import hashlib
 import logging
 import urllib2
@@ -76,7 +75,6 @@ def main():
    addCommand("hello", "I will greet you.", hello, False) #This command probably should not be included in !help
    addCommand("shuf", "Access the ChatShuffle2.0", shuf, True)
    addCommand("count", "Get the piece count for a design ID", count, True)
-   addCommand("inputTest", "test for input", inputTest, False)
    addCommand("sandwich", "Easter Egg", sandwich, False)
    addCommand("sudosandwich", "Easter Egg", sudosandwich, False)
 
@@ -280,15 +278,6 @@ def count(args, name, destination):
    except Exception as e:
       sendmsg(destination, "Bad input")
       print(e)
-
-def playPig(args, name, destination):
-   #We don't want to play a game in the mian channel, it will annoy people
-   #Therefore, first check to see if this is a private conversation
-   #If name == destination, then it is a private conversation
-   if (name ==  destination):
-      pass
-   else:
-      sendmsg(destination, "I am sorry {name}, you can only play that game in a private chat with me. Type \"/query {nick} !pig\" to play.", name, nick)
 
 def inputTest(args, name, destination):
    sendmsg(destination, "{name} must now send input", name)

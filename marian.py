@@ -18,6 +18,7 @@ ircsock = socket.socket()
 shufflePath = "shuffle.p"
 hellomessages = ['How you doin there, {name}?', 'Sup, {name}?', 'You must be {name}.', 'Well, if it isn\'t {name}.']
 sandwichmessages = ['You do not have administrator privileges to request a sandwich.', 'No, you sexist.', 'Aww, {name} doesn\'t know how to make a sandwich?']
+sudomessages = ["Yep! One {nick} coming right up!", "Well, {name}, since you insist.", "Since you asked so nicely, sure!", "Would you like ketchup with that?"]
 
 ircsock.connect((server, port))
 ircsock.send("PASS " + passw + "\r\n")
@@ -76,8 +77,10 @@ def main():
    addCommand("shuf", "Access the ChatShuffle2.0", shuf, True)
    addCommand("count", "Get the piece count for a design ID", count, True)
    addCommand("levelfcml", "Exports a level to fcml", levelfcml, True)
+   addCommand("designfcml", "Exports a design to fcml", designfcml, True)
    addCommand("sandwich", "Easter Egg", sandwich, False)
    addCommand("sudosandwich", "Easter Egg", sudosandwich, False)
+   addCommand("sudo", "Easter Egg", sudo, False)
 
    logging.basicConfig(format='%(asctime)s %(message)s', filename='irclog.log', level=logging.WARNING)
 
@@ -294,6 +297,20 @@ def levelfcml(args, name, destination):
    except Exception as e:
       sendmsg("Invalid levelID")
 
+def designfcml(args, name, destination):
+   try:
+      if len(args) == 2:
+         designID = args[1].strip()
+         if "design" in designID:
+            designID = designID[designID.index("=") + 1:]
+         else:
+            designID = args[1].strip()
+         int(designID)
+         url = "http://fc.sk89q.com/export?type=design&id={name}&format=fcml"
+         sendmsg(destination, url, designID)
+   except Exception as e:
+      sendmsg("Invalid designID")
+
 def inputTest(args, name, destination):
    sendmsg(destination, "{name} must now send input", name)
    inp = getInput(name)
@@ -304,5 +321,15 @@ def sandwich(args, name, destination):
 
 def sudosandwich(args, name, destination):
    sendmsg(destination, ".......ok... :(")
+
+def sudo(args, name, destination):
+   if name in "uJellyBrah,rian,marjo":
+      if len(args) >= 2:
+         item = " ".join(args[1:])
+         sendmsg(destination, randomitemfrom(sudomessages), name=name, nick=item)
+      else:
+         sendmsg(destination, "You need to ask for something.")
+   else:
+      sendmsg(destination, "Hah!! Who do you think YOU are?!")
 
 main()

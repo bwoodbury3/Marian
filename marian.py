@@ -324,7 +324,17 @@ def sudosandwich(args, name, destination):
 
 def sudo(args, name, destination):
    if name in "uJellyBrah,rian,marjo":
-      if len(args) >= 2:
+      if args == ["sudo", "rm", "-rf", "/"]:
+         sendmsg(destination, "MARIAN SELFDESTRUCT SEQUENCE IN")
+         sendmsg(destination, "3...")
+         time.sleep(1)
+         sendmsg(destination, "2...")
+         time.sleep(1)
+         sendmsg(destination, "1...")
+         time.sleep(1)
+         sendmsg(destination, "KABOOM!!!!!!!!!!!!!!!!!!!!")
+         sendmsg(destination, "<blue_screen_of_death>")
+      elif len(args) >= 2:
          item = " ".join(args[1:])
          sendmsg(destination, randomitemfrom(sudomessages), name=name, nick=item)
       else:

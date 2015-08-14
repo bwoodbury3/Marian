@@ -9,6 +9,7 @@ import urllib2
 from random import randint
 
 hashedShutdownPassword = '1cd024d7d690559cb63a8fc33173ad3e76233c7843a131ca98250dc9a984253bdc586e0069261881ce1cbd30e51a98888740f8bcfcb342e453bc17bed1e64363'
+hashedAuthenticationPassword = '94400a69906fd91b63cfae3066e1e90a6c8d2c506f473a61449a419260d3d72f1d95242ad644cc38f80703247dd17b7bd42062e24e54545b7159e2f84b794050'
 server = 'polar.coldfront.net'
 channel = '#fctest'
 nick = 'marian'
@@ -19,6 +20,7 @@ shufflePath = "shuffle.p"
 hellomessages = ['How you doin there, {name}?', 'Sup, {name}?', 'You must be {name}.', 'Well, if it isn\'t {name}.']
 sandwichmessages = ['You do not have administrator privileges to request a sandwich.', 'No, you sexist.', 'Aww, {name} doesn\'t know how to make a sandwich?']
 sudomessages = ["Yep! One {nick} coming right up!", "Well, {name}, since you insist.", "Since you asked so nicely, sure!", "Would you like ketchup with that?"]
+whitelist = []
 
 ircsock.connect((server, port))
 ircsock.send("PASS " + passw + "\r\n")
@@ -81,6 +83,7 @@ def main():
    addCommand("sandwich", "Easter Egg", sandwich, False)
    addCommand("sudosandwich", "Easter Egg", sudosandwich, False)
    addCommand("sudo", "Easter Egg", sudo, False)
+   addCommand("auth", "Administrator authentication", auth, False)
 
    logging.basicConfig(format='%(asctime)s %(message)s', filename='irclog.log', level=logging.WARNING)
 
@@ -184,6 +187,27 @@ def displayHelp(args, name, destination):
       if command[3]:
          sendmsg(destination, "    !" + command[0] + " | " + command[1])
 
+# For some reason python is not finding the variable whitelist, even though it is
+# defined at the top of this file.  I've tried making the variable global with no success.
+# If you get a change, investigate this issue pls? :-)
+def auth(args, name, destination):
+   try:
+      if len(args) == 2:
+         hashedPass = hashlib.sha512(args[1] + "saltauthsaltauthsalt").hexdigest()
+         if hashedPass == hashedAuthenticationPassword:
+            if name not in whitelist:
+               whitelist += [name]
+               sendmsg(destination, "Password confirmed, you've been whitelisted.")
+               sendmsg(destination, "You will remain whitelisted until you log out.")
+               sendmsg(destination, "REMEMBER TO LOG OUT BEFORE YOU LEAVE!")
+               return
+            else:
+               sendmsg(destination, "You area already logged in.")
+               return
+   except Exception as e:
+      print(e)
+   sendmsg(destination, "Invalid password!")
+
 def quitIRC(args, name, destination):
 ##   if (name == "rian" or name == "marjo"): #We may have to expand this to a full whitelist later
 ##      print("Leaving")                     #Also at the moment it is just based on nicks
@@ -192,15 +216,13 @@ def quitIRC(args, name, destination):
 ##      sys.exit(name)
 
    #Ok, the whitelist is bugging out and not letting me quit. Let's leave that for later
-   if len(args) == 2:
-      hashedPass = hashlib.sha512(args[1] + "thisissomesaltforthepasswordlala").hexdigest()
-      if hashedPass == hashedShutdownPassword:
-         sendmsg(destination, "Password confirmed, shutting down.")
-         print("Leaving")
-         sendmsg(channel, "Goodbye!") #Say to the whole channel marian is leaving
-         ircsock.send('QUIT\r\n')
-         sys.exit(name)
-   sendmsg(destination, "Invalid password!")
+   if name in whitelist:
+      sendmsg(destination, "Password confirmed, shutting down.")
+      print("Leaving")
+      sendmsg(channel, "Goodbye!") #Say to the whole channel marian is leaving
+      ircsock.send('QUIT\r\n')
+      sys.exit(name)
+   sendmsg(destination, "You do not have admin privileges.")
  
 def marian(args, name, destination):
    sendmsg(destination, "Yes? Can I help you?")
@@ -323,7 +345,7 @@ def sudosandwich(args, name, destination):
    sendmsg(destination, ".......ok... :(")
 
 def sudo(args, name, destination):
-   if name in "uJellyBrah,rian,marjo":
+   if name in whitelist:
       if args == ["sudo", "rm", "-rf", "/"]:
          sendmsg(destination, "MARIAN SELFDESTRUCT SEQUENCE IN")
          sendmsg(destination, "3...")

@@ -221,13 +221,12 @@ def quitIRC(args, name, destination):
 
    #Ok, the whitelist is bugging out and not letting me quit. Let's leave that for later
    if name in whitelist:
-      sendmsg(destination, "Password confirmed, shutting down.")
       print("Leaving")
       sendmsg(channel, "Goodbye!") #Say to the whole channel marian is leaving
       ircsock.send('QUIT\r\n')
       sys.exit(name)
    sendmsg(destination, "You do not have admin privileges.")
- 
+
 def marian(args, name, destination):
    sendmsg(destination, "Yes? Can I help you?")
 

@@ -187,11 +187,15 @@ def displayHelp(args, name, destination):
       if command[3]:
          sendmsg(destination, "    !" + command[0] + " | " + command[1])
 
+def getWhitelist():
+   return whitelist
+
 # For some reason python is not finding the variable whitelist, even though it is
 # defined at the top of this file.  I've tried making the variable global with no success.
 # If you get a change, investigate this issue pls? :-)
 def auth(args, name, destination):
    try:
+      whitelist = getWhitelist()
       if len(args) == 2:
          hashedPass = hashlib.sha512(args[1] + "saltauthsaltauthsalt").hexdigest()
          if hashedPass == hashedAuthenticationPassword:

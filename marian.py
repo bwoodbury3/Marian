@@ -84,6 +84,7 @@ def main():
    addCommand("sudosandwich", "Easter Egg", sudosandwich, False)
    addCommand("sudo", "Easter Egg", sudo, False)
    addCommand("auth", "Administrator authentication", auth, False)
+   addCommand("deauth", "Remove name from whitelist", deauth, False)
 
    logging.basicConfig(format='%(asctime)s %(message)s', filename='irclog.log', level=logging.WARNING)
 
@@ -197,13 +198,21 @@ def auth(args, name, destination):
    try:
       whitelist = getWhitelist()
       if len(args) == 2:
+         if args[1] == 'get-all':
+            if len(whitelist) != 0:
+               sendmsg(destination, "Whitelisted users:")
+               for name in whitelist:
+                  sendmsg(destination, "> " + name)
+            else:
+               sendmsg(destination, "No users have administrator privileges.")
+            return
          hashedPass = hashlib.sha512(args[1] + "saltauthsaltauthsalt").hexdigest()
          if hashedPass == hashedAuthenticationPassword:
             if name not in whitelist:
                whitelist += [name]
                sendmsg(destination, "Password confirmed, you've been whitelisted.")
-               sendmsg(destination, "You will remain whitelisted until you log out.")
-               sendmsg(destination, "REMEMBER TO LOG OUT BEFORE YOU LEAVE!")
+               sendmsg(destination, "> You will remain whitelisted until you log out.")
+               sendmsg(destination, "> Remember to log out before you leave using '!deauth'")
                return
             else:
                sendmsg(destination, "You area already logged in.")
@@ -211,6 +220,16 @@ def auth(args, name, destination):
    except Exception as e:
       print(e)
    sendmsg(destination, "Invalid password!")
+
+def deauth(args, name, destination):
+   try:
+      if name in whitelist:
+         whitelist.remove(name)
+         sendmsg(destination, "You've been removed from the whitelist")
+      else:
+         sendmsg(destination, "You are not whitelisted. Try 'auth get-all' to see whitelist.")
+   except Exception as e:
+      print(e)
 
 def quitIRC(args, name, destination):
 ##   if (name == "rian" or name == "marjo"): #We may have to expand this to a full whitelist later

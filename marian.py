@@ -27,7 +27,7 @@ whitelist = []
 ircsock.connect((server, port))
 ircsock.send("PASS " + passw + "\r\n")
 ircsock.send("NICK " + nick + "\r\n")
-ircsock.send("USER " + nick + " " + nick + " " + nick + " : This is a bot that I really really hope will work\r\n")
+ircsock.send("USER " + nick + " " + nick + " " + nick + " : This is Marian, a Fantastic Contraption IRC bot. Type !help to see how Marian can help you.\r\n")
 
 commands = []; #List of possible commands
                #Each element is a tuple in the form of [command name, command description, callback function, displayInHelp]
@@ -83,6 +83,8 @@ def main():
    addCommand("levelfcml", "Exports a level to fcml", levelfcml, True)
    addCommand("designfcml", "Exports a design to fcml", designfcml, True)
    addCommand("imageify", "Generates fcml given an image url", imageify, True)
+
+   #Easter Eggs
    addCommand("sandwich", "Easter Egg", sandwich, False)
    addCommand("sudosandwich", "Easter Egg", sudosandwich, False)
    addCommand("sudo", "Easter Egg", sudo, False)

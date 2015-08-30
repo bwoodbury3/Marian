@@ -107,7 +107,10 @@ def main():
          ircsock.send('JOIN :' + channel + '\r\n')
          sendmsg(channel, "Hello everyone! I am a Marian version beta! Type !help to see my list of commands. Beep Boop.")
       else:
-         parsemessage(data, ircsock, channel)
+         try:
+            parsemessage(data, ircsock, channel)
+         except Exception as e:
+            print "Message could not be parsed"
  
 def parsemessage(data, ircsock, channel):
    msgParts = data.split(':', 2)
@@ -261,7 +264,7 @@ def hello(args, name, destination):
 def shuf(args, name, destination):
    shuffles = getShuffles()
    if len(args) < 2:
-      sendmsg(destination, "blah blah syntax error, show shuf options, blah")
+      displayShufRules(destination)
       return
    if args[1] == 'solve' and len(args) == 3:
       if len(shuffles) > 0:
@@ -316,11 +319,7 @@ def shuf(args, name, destination):
       except Exception:
          sendmsg(destination, "Entry doesn't exist or invalid syntax.")
    elif args[1] == 'rules':
-      sendmsg(destination, "Chat Shuffle 2.0: Easy-Moderate difficulty.")
-      sendmsg(destination, "-- View the current level: '!shuf level'")
-      sendmsg(destination, "-- Solve the current level: '!shuf solve [designID]'")
-      sendmsg(destination, "-- Edit the current level: '!shuf edit [levelID]'")
-      sendmsg(destination, "-- Find a particular level/solution: '!shuf find [index]'")
+      displayShufRules(destination)
    elif args[1] == 'clear': 
       if name in whitelist:
          try:
@@ -336,6 +335,13 @@ def shuf(args, name, destination):
          sendmsg(destination, "You are not cleared to perform this action")
    else:
       sendmsg(destination, "Invalid command syntax.")
+
+def displayShufRules(destination):
+   sendmsg(destination, "Chat Shuffle 2.0: Easy-Moderate difficulty.")
+   sendmsg(destination, "-- View the current level: '!shuf level'")
+   sendmsg(destination, "-- Solve the current level: '!shuf solve [designID]'")
+   sendmsg(destination, "-- Edit the current level: '!shuf edit [levelID]'")
+   sendmsg(destination, "-- Find a particular level/solution: '!shuf find [index]'")
 
 def imageify(args, name, destination):
    # Check against a clock so that marian doesn't get spammed. (Once every minute?)

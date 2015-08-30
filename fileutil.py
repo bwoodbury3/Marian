@@ -1,8 +1,8 @@
 import os
 
 def createHTMLFile(fileName, fileContent): #returns link
-    currentDirectory = os.getcwd() + "/HTMLsaves/"
-    newFile = open(currentDirectory + fileName + ".html", 'w')
+    newFileName = os.getcwd() + "/HTMLsaves/" + fileName + ".html"
+    newFile = open(newFileName, 'w')
     newFile.write(fileContent)
-    url = currentDirectory + newFile.name
+    url = newFileName
     return url

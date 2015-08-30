@@ -75,8 +75,6 @@ except Exception as e:
    print(e)
 
 def main():
-   os.chdir("C:\Users\Joseph\Documents\Programming\Python\AI\Marian\HTMLsaves")
-   
    #Here the commands are added
    addCommand("help", "Displays this command dialog.", displayHelp, True)
    addCommand("quit", "Causes the bot to quit. Be prepared to authenticate with a password.", quitIRC, False)
@@ -96,7 +94,7 @@ def main():
    addCommand("sudosandwich", "Easter Egg", sudosandwich, False)
    addCommand("sudo", "Easter Egg", sudo, False)
 
-   logging.basicConfig(format='%(asctime)s %(message)s', filename='irclog.log', level=logging.WARNING)
+   logging.basicConfig(format='%(asctime)s %(message)s', filename='HTMLsaves/irclog.log', level=logging.WARNING)
 
    while True:
       data = ircsock.recv(2048)
@@ -477,8 +475,11 @@ def sudo(args, name, destination):
       sendmsg(destination, "Hah!! Who do you think YOU are?!")
 
 def testFiles(args, name, destination):
-   sendmsg(destination, args[1])
-   sendmsg(destination, args[2])
-   sendmsg(destination, fileutil.createHTMLFile(args[1], args[2]))
+   if len(args) == 3:
+      sendmsg(destination, args[1])
+      sendmsg(destination, args[2])
+      sendmsg(destination, fileutil.createHTMLFile(args[1], args[2]))
+   else:
+      sendmsg(destination, "Invalid arguments")
 
 main()

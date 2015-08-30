@@ -5,7 +5,9 @@ import cPickle
 import hashlib
 import logging
 import urllib2
- 
+
+
+from fcmlimage import FCMLImage
 from random import randint
 
 hashedShutdownPassword = '1cd024d7d690559cb63a8fc33173ad3e76233c7843a131ca98250dc9a984253bdc586e0069261881ce1cbd30e51a98888740f8bcfcb342e453bc17bed1e64363'
@@ -80,6 +82,7 @@ def main():
    addCommand("count", "Get the piece count for a design ID", count, True)
    addCommand("levelfcml", "Exports a level to fcml", levelfcml, True)
    addCommand("designfcml", "Exports a design to fcml", designfcml, True)
+   addCommand("imageify", "Generates fcml given an image url", imageify, True)
    addCommand("sandwich", "Easter Egg", sandwich, False)
    addCommand("sudosandwich", "Easter Egg", sudosandwich, False)
    addCommand("sudo", "Easter Egg", sudo, False)
@@ -191,6 +194,9 @@ def displayHelp(args, name, destination):
 def getWhitelist():
    return whitelist
 
+def getShuffles():
+   return shuffles
+
 # For some reason python is not finding the variable whitelist, even though it is
 # defined at the top of this file.  I've tried making the variable global with no success.
 # If you get a change, investigate this issue pls? :-)
@@ -253,6 +259,7 @@ def hello(args, name, destination):
    sendmsg(destination, randomitemfrom(hellomessages), name)
 
 def shuf(args, name, destination):
+   shuffles = getShuffles()
    if len(args) < 2:
       sendmsg(destination, "blah blah syntax error, show shuf options, blah")
       return
@@ -261,6 +268,9 @@ def shuf(args, name, destination):
          if shuffles[-1].hasSolution():
             sendmsg(destination, "Shuf #" + str(len(shuffles)) + " already has a solution. Please edit.")
          else:
+            if not "http://FantasticContraption.com/?designId=" in args[2]:
+               sendmsg(destination, "This design is not in the correct design format")
+               return
             shuffles[-1].solveLevel(args[2], name)
             f = open(shufflePath, "wb")
             cPickle.dump(shuffles, f)
@@ -274,6 +284,9 @@ def shuf(args, name, destination):
             sendmsg(destination, "You have to solve the other level first, silly.")
             sendmsg(destination, shuffles[-1].level)
             return
+      if not "http://FantasticContraption.com/?levelId=" in args[2]:
+         sendmsg(destination, "This level is not in the correct level format")
+         return
       shuffles.append(Shuffle(args[2], len(shuffles) + 1))
       f = open(shufflePath, "wb")
       cPickle.dump(shuffles, f)
@@ -302,8 +315,71 @@ def shuf(args, name, destination):
          sendmsg(destination, str(shuffles[solutionNum - 1]))
       except Exception:
          sendmsg(destination, "Entry doesn't exist or invalid syntax.")
+   elif args[1] == 'rules':
+      sendmsg(destination, "Chat Shuffle 2.0: Easy-Moderate difficulty.")
+      sendmsg(destination, "-- View the current level: '!shuf level'")
+      sendmsg(destination, "-- Solve the current level: '!shuf solve [designID]'")
+      sendmsg(destination, "-- Edit the current level: '!shuf edit [levelID]'")
+      sendmsg(destination, "-- Find a particular level/solution: '!shuf find [index]'")
+   elif args[1] == 'clear': 
+      if name in whitelist:
+         try:
+            shuffles = []
+            f = open(shufflePath, "wb")
+            cPickle.dump(shuffles, f)
+            f.close()
+            sendmsg(destination, "Shuffle database deleted. This action cannot be undone. Oh well. Too late.")
+         except Exception as e:
+            sendmsg(destination, "Shuffle files probably corrupted. Way to go.")
+            print e
+      else:
+         sendmsg(destination, "You are not cleared to perform this action")
    else:
       sendmsg(destination, "Invalid command syntax.")
+
+def imageify(args, name, destination):
+   # Check against a clock so that marian doesn't get spammed. (Once every minute?)
+   try:
+      if len(args) >= 2:
+         imageURL = args[1]
+         xtrans = 0
+         ytrans = 0
+         scale = 1
+         if len(args) > 2:
+            for arg in args:
+               opt = arg.split("=")
+               if len(opt) != 2:
+                  sendmsg(destination, "Invalid args! Possible args:")
+                  sendmsg(destination, "xtrans, ytrans, scale")
+                  return
+               if opt[0] == "xtrans":
+                  xtrans = int(opt[1])
+                  if xtrans > 1100 or xtrans < -1100:
+                     sendmsg(destination, "Your xtrans value must be within -1100 and 1100")
+                     return
+               if opt[0] == "ytrans":
+                  ytrans = int(opt[1])
+                  if ytrans > 1100 or ytrans < -1100:
+                     sendmsg(destination, "Your ytrans value must be within -1100 and 1100")
+                     return
+               if opt[0] == "scale":
+                  scale = float(opt[1])
+                  if scale > 10 or scale < 0.1:
+                     sendmsg(destination, "Your scale must be within 0.1 and 10")
+                     return
+         fcmlImage = FCMLImage(imageURL, xtrans=xtrans, ytrans=ytrans, scale=scale)
+         if not fcmlImage.isValidImageURL():
+            sendmsg(destination, "Your url was rejected. Check that the extension is http://xxxxx.jpg or something similar.")
+            return
+         fcml = fcmlImage.generateFCML()
+         # ---------------------------------
+         # Do something clever with the fcml
+         # --------------------------------
+
+   except Exception as e:
+      # sendmsg(destination, "Something went wrong with your input")
+      senfmsg(destination, "This feature is not yet implemented. Hang tight.")
+      print(e)
 
 def count(args, name, destination):
    try:

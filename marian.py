@@ -5,6 +5,8 @@ import cPickle
 import hashlib
 import logging
 import urllib2
+import fileutil
+import os
 
 
 from fcmlimage import FCMLImage
@@ -27,7 +29,7 @@ whitelist = []
 ircsock.connect((server, port))
 ircsock.send("PASS " + passw + "\r\n")
 ircsock.send("NICK " + nick + "\r\n")
-ircsock.send("USER " + nick + " " + nick + " " + nick + " : This is Marian, a Fantastic Contraption IRC bot. Type !help to see how Marian can help you.\r\n")
+ircsock.send("USER " + nick + " " + nick + " " + nick + " : This is marian, a Fantastic Contraption IRC bot - Type !help to see how marian can help you.\r\n")
 
 commands = []; #List of possible commands
                #Each element is a tuple in the form of [command name, command description, callback function, displayInHelp]
@@ -73,23 +75,26 @@ except Exception as e:
    print(e)
 
 def main():
+   os.chdir("C:\Users\Joseph\Documents\Programming\Python\AI\Marian\HTMLsaves")
+   
    #Here the commands are added
    addCommand("help", "Displays this command dialog.", displayHelp, True)
    addCommand("quit", "Causes the bot to quit. Be prepared to authenticate with a password.", quitIRC, False)
-   addCommand("marian", "Say hello!", marian, False) #This command probably should not be included in !help
-   addCommand("hello", "I will greet you.", hello, False) #This command probably should not be included in !help
    addCommand("shuf", "Access the ChatShuffle2.0", shuf, True)
    addCommand("count", "Get the piece count for a design ID", count, True)
    addCommand("levelfcml", "Exports a level to fcml", levelfcml, True)
    addCommand("designfcml", "Exports a design to fcml", designfcml, True)
    addCommand("imageify", "Generates fcml given an image url", imageify, True)
-
+   addCommand("auth", "Administrator authentication", auth, False)
+   addCommand("deauth", "Remove name from whitelist", deauth, False)
+   addCommand("testFiles", "test", testFiles, True)
+   
    #Easter Eggs
+   addCommand("marian", "Easter Egg", marian, False)
+   addCommand("hello", "Easter Egg", hello, False)
    addCommand("sandwich", "Easter Egg", sandwich, False)
    addCommand("sudosandwich", "Easter Egg", sudosandwich, False)
    addCommand("sudo", "Easter Egg", sudo, False)
-   addCommand("auth", "Administrator authentication", auth, False)
-   addCommand("deauth", "Remove name from whitelist", deauth, False)
 
    logging.basicConfig(format='%(asctime)s %(message)s', filename='irclog.log', level=logging.WARNING)
 
@@ -113,6 +118,7 @@ def main():
             parsemessage(data, ircsock, channel)
          except Exception as e:
             print "Message could not be parsed"
+            print e
  
 def parsemessage(data, ircsock, channel):
    msgParts = data.split(':', 2)
@@ -469,5 +475,10 @@ def sudo(args, name, destination):
          sendmsg(destination, "You need to ask for something.")
    else:
       sendmsg(destination, "Hah!! Who do you think YOU are?!")
+
+def testFiles(args, name, destination):
+   sendmsg(destination, args[1])
+   sendmsg(destination, args[2])
+   sendmsg(destination, fileutil.createHTMLFile(args[1], args[2]))
 
 main()

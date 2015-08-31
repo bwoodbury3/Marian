@@ -8,9 +8,9 @@ import urllib2
 import fileutil
 import os
 
-
 from fcmlimage import FCMLImage
 from random import randint
+from fileutil import FormattedFCML
 
 hashedShutdownPassword = '1cd024d7d690559cb63a8fc33173ad3e76233c7843a131ca98250dc9a984253bdc586e0069261881ce1cbd30e51a98888740f8bcfcb342e453bc17bed1e64363'
 hashedAuthenticationPassword = '94400a69906fd91b63cfae3066e1e90a6c8d2c506f473a61449a419260d3d72f1d95242ad644cc38f80703247dd17b7bd42062e24e54545b7159e2f84b794050'
@@ -379,18 +379,18 @@ def imageify(args, name, destination):
                   if scale > 10 or scale < 0.1:
                      sendmsg(destination, "Your scale must be within 0.1 and 10")
                      return
-         fcmlImage = FCMLImage(imageURL, xtrans=xtrans, ytrans=ytrans, scale=scale)
-         if not fcmlImage.isValidImageURL():
-            sendmsg(destination, "Your url was rejected. Check that the extension is http://xxxxx.jpg or something similar.")
-            return
+         fcmlImage = FCMLImage(imageURL, xtrans, ytrans, scale)
          fcml = fcmlImage.generateFCML()
          # ---------------------------------
          # Do something clever with the fcml
          # --------------------------------
+         formattedfcml = FormattedFCML("newfile")
+         formattedfcml.writeToFile(fcml)
+         sendmsg(destination, formattedfcml.filePath)
 
    except Exception as e:
       # sendmsg(destination, "Something went wrong with your input")
-      senfmsg(destination, "This feature is not yet implemented. Hang tight.")
+      sendmsg(destination, "This feature is not yet implemented. Hang tight.")
       print(e)
 
 def count(args, name, destination):

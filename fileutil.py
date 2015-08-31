@@ -1,8 +1,22 @@
 import os
 
-def createHTMLFile(fileName, fileContent): #returns link
-    newFileName = os.getcwd() + "/HTMLsaves/" + fileName + ".html"
-    newFile = open(newFileName, 'w')
-    newFile.write(fileContent)
-    url = newFileName
-    return url
+class FormattedFCML:
+   def __init__(self, fileName): #returns link
+      self.filePath = os.getcwd() + "/HTMLsaves/" + fileName + ".html"
+
+   def writeToFile(self, fcml):
+      fcml = fcml.replace("\n", "<br>")
+      header = "; This code was exported by Marian<br><br>"
+      title = "@name        Exported<br>"\
+              "@description Exported code by marian<br><br>"
+      areas = "; Build and goal areas<br>"\
+              "BuildArea (-200, 0), (200, 200), 0<br>"\
+              "GoalArea (200, 0), (200, 200), 0<br><br>"
+      objs = "; Level objects<br>" + fcml
+      goals = "; Goal and design objects"\
+              "GoalCircle#0 (0, 0), (40, 40)"
+
+      finalhtml = header + title + areas + objs + goals
+      htmlFile = open(self.filePath, 'w')
+      htmlFile.write(finalhtml)
+      htmlFile.close()

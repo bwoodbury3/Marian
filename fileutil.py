@@ -12,9 +12,9 @@ class FormattedFCML:
       areas = "; Build and goal areas<br>"\
               "BuildArea (-200, 0), (200, 200), 0<br>"\
               "GoalArea (200, 0), (200, 200), 0<br><br>"
-      objs = "; Level objects<br>" + fcml
-      goals = "; Goal and design objects"\
-              "GoalCircle#0 (0, 0), (40, 40)"
+      objs = "; Level objects<br>" + fcml + "<br><br>"
+      goals = "; Goal and design objects<br>"\
+              "GoalCircle#0 (0, 0), (40, 40)<br>"
 
       finalhtml = header + title + areas + objs + goals
       htmlFile = open(self.filePath, 'w')

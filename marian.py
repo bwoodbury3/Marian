@@ -284,7 +284,9 @@ def shuf(args, name, destination):
             f = open(shufflePath, "wb")
             cPickle.dump(shuffles, f)
             f.close()
-            sendmsg(destination, "Nice solve! Database updated. Remember to edit!")
+            solvedlevel = shuffles[-1].level.replace("level", "edit")
+            sendmsg(destination, "Nice solve! Edit link:")
+            sendmsg(destination, solvedlevel)
       else:
          sendmsg(destination, "There is no level to be solved. Make the first level! Do 'shuf edit [URL]'")
    elif args[1] == 'edit' and len(args) == 3:
@@ -383,7 +385,7 @@ def imageify(args, name, destination):
          fcml = fcmlImage.generateFCML()
          # ---------------------------------
          # Do something clever with the fcml
-         # --------------------------------
+         # ---------------------------------
          formattedfcml = FormattedFCML("newfile")
          formattedfcml.writeToFile(fcml)
          sendmsg(destination, formattedfcml.filePath)

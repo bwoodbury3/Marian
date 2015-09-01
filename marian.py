@@ -15,7 +15,7 @@ from fileutil import FormattedFCML
 hashedShutdownPassword = '1cd024d7d690559cb63a8fc33173ad3e76233c7843a131ca98250dc9a984253bdc586e0069261881ce1cbd30e51a98888740f8bcfcb342e453bc17bed1e64363'
 hashedAuthenticationPassword = '94400a69906fd91b63cfae3066e1e90a6c8d2c506f473a61449a419260d3d72f1d95242ad644cc38f80703247dd17b7bd42062e24e54545b7159e2f84b794050'
 server = 'polar.coldfront.net'
-channel = '#fctest'
+channel = '#fc'
 nick = 'marian'
 passw = 'iamafantasticcontraptionbot'
 port = 6667
@@ -82,10 +82,9 @@ def main():
    addCommand("count", "Get the piece count for a design ID", count, True)
    addCommand("levelfcml", "Exports a level to fcml", levelfcml, True)
    addCommand("designfcml", "Exports a design to fcml", designfcml, True)
-   addCommand("imageify", "Generates fcml given an image url", imageify, True)
+   addCommand("imageify", "Generates fcml given an image url // WORK IN PROGRESS", imageify, True)
    addCommand("auth", "Administrator authentication", auth, False)
    addCommand("deauth", "Remove name from whitelist", deauth, False)
-   addCommand("testFiles", "test", testFiles, True)
    
    #Easter Eggs
    addCommand("marian", "Easter Egg", marian, False)
@@ -475,13 +474,5 @@ def sudo(args, name, destination):
          sendmsg(destination, "You need to ask for something.")
    else:
       sendmsg(destination, "Hah!! Who do you think YOU are?!")
-
-def testFiles(args, name, destination):
-   if len(args) == 3:
-      sendmsg(destination, args[1])
-      sendmsg(destination, args[2])
-      sendmsg(destination, fileutil.createHTMLFile(args[1], args[2]))
-   else:
-      sendmsg(destination, "Invalid arguments")
 
 main()

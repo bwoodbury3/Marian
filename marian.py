@@ -85,6 +85,7 @@ def main():
    addCommand("imageify", "Generates fcml given an image url // WORK IN PROGRESS", imageify, True)
    addCommand("auth", "Administrator authentication", auth, False)
    addCommand("deauth", "Remove name from whitelist", deauth, False)
+   addCommand("randLevel", "Gets a random level. Can specify [unsolved]", randLevel, True)
    
    #Easter Eggs
    addCommand("marian", "Easter Egg", marian, False)
@@ -474,5 +475,20 @@ def sudo(args, name, destination):
          sendmsg(destination, "You need to ask for something.")
    else:
       sendmsg(destination, "Hah!! Who do you think YOU are?!")
+
+def randLevel(args, name, destination):
+   #let's start with the level purge as our lowest point
+   lowPoint = 489000 #This is about where I found the first level
+
+   #To find the high point, we need to see the latest created ID
+   #We could do this by visiting http://www.fantasticcontraption.com/saveLevel.php
+   #And simply reading off the number, but I don't want to polute the game
+   #with blank levels. Instead, let's go to http://fc.sk89q.com/levels?difficulty=0&sort=date&order=DESC
+   #and read off the first number. For now, let's just assume the number is 636000
+   highPoint = 636000
+
+   #From here, the rest is easy
+   randID = randint(lowPoint, highPoint)
+   sendmsg(destination, "Random Level: http://www.fantasticcontraption.com/?levelId=" + str(randID))
 
 main()

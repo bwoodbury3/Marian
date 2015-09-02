@@ -15,7 +15,7 @@ from fileutil import FormattedFCML
 hashedShutdownPassword = '1cd024d7d690559cb63a8fc33173ad3e76233c7843a131ca98250dc9a984253bdc586e0069261881ce1cbd30e51a98888740f8bcfcb342e453bc17bed1e64363'
 hashedAuthenticationPassword = '94400a69906fd91b63cfae3066e1e90a6c8d2c506f473a61449a419260d3d72f1d95242ad644cc38f80703247dd17b7bd42062e24e54545b7159e2f84b794050'
 server = 'polar.coldfront.net'
-channel = '#fc'
+channel = '#fctest'
 nick = 'marian'
 passw = 'iamafantasticcontraptionbot'
 port = 6667
@@ -487,8 +487,20 @@ def randLevel(args, name, destination):
    #and read off the first number. For now, let's just assume the number is 636000
    highPoint = 636000
 
-   #From here, the rest is easy
    randID = randint(lowPoint, highPoint)
-   sendmsg(destination, "Random Level: http://www.fantasticcontraption.com/?levelId=" + str(randID))
+   url = urllib2.urlopen("http://fc.sk89q.com/level?levelId=" + str(randID))
+   #We should check to make sure the level is published. If it is not, we should find another level
+   #Got a flue shot today and it hurts so I am not in the mood right now
+   
+   html = url.read()
+   nameLocation1 = html.rfind("<strong>Level name:</strong>") + 29
+   nameLocation2 = html.index("</li>", nameLocation1)
+   levelName = html[nameLocation1 : nameLocation2]
+
+   authorLocation1 = html.rfind("<strong>Authored by:</strong>") + 30
+   authorLocation2 = html.index("</li>", authorLocation1) - 5
+   levelAuthor = html[authorLocation1 : authorLocation2] #Finding author still needs some work
+   
+   sendmsg(destination, levelName + " by " + levelAuthor + ": www.fantasticcontraption.com/?levelId=" + str(randID))
 
 main()

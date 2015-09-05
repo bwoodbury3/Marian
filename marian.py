@@ -358,6 +358,7 @@ def imageify(args, name, destination):
          xtrans = 0
          ytrans = 0
          scale = 1
+         sens = 550
          if len(args) > 2:
             for arg in args:
                opt = arg.split("=")
@@ -380,8 +381,13 @@ def imageify(args, name, destination):
                   if scale > 10 or scale < 0.1:
                      sendmsg(destination, "Your scale must be within 0.1 and 10")
                      return
-         fcmlImage = FCMLImage(imageURL, xtrans, ytrans, scale)
-         fcml = fcmlImage.generateFCML()
+               if opt[0] == "sensitivity":
+                  sens = int(opt[1])
+                  if sens <= 0:
+                     sendmsg(destination, "Your sensitivity must be greater than 0")
+                     return
+         fcmlImage = FCMLImage(imageURL, xtrans, ytrans, scale, sens)
+         fcml = fcmlImage.partition()
          # ---------------------------------
          # Do something clever with the fcml
          # ---------------------------------

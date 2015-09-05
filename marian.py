@@ -492,6 +492,16 @@ def randLevel(args, name, destination):
    #with blank levels. Instead, let's go to http://fc.sk89q.com/levels?difficulty=0&sort=date&order=DESC
    #and read off the first number. For now, let's just assume the number is 636000
    highPoint = 636000
+   try:
+      url = urllib2.urlopen("http://fc.sk89q.com/levels?difficulty=0&sort=date&order=DESC")
+      html = url.read()
+      firstLevelStartIndex = html.index("http://fantasticcontraption.com/?levelId=")
+      firstIDStartIndex = html.index("=", firstLevelStartIndex) + 1
+      firstIDEndIndex = html.index("\"", firstIDStartIndex)
+      highPoint = int(html[firstIDStartIndex : firstIDEndIndex])
+      print highPoint
+   except Exception as e:
+      sendmsg(destination, "The resource is down. Here's what I can do:")
 
    randID = randint(lowPoint, highPoint)
    url = urllib2.urlopen("http://fc.sk89q.com/level?levelId=" + str(randID))
@@ -504,6 +514,7 @@ def randLevel(args, name, destination):
    levelName = html[nameLocation1 : nameLocation2]
 
    authorLocation1 = html.rfind("<strong>Authored by:</strong>") + 30
+   authorLocation1 = html.index(">", authorLocation1) + 1
    authorLocation2 = html.index("</li>", authorLocation1) - 5
    levelAuthor = html[authorLocation1 : authorLocation2] #Finding author still needs some work
    

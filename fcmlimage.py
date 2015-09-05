@@ -208,7 +208,7 @@ class FCMLImage:
             if i[0] >= h or pix[i[0]][i[1]] == 0:
                 continue
             for j in edges_y:
-                if j[1] == i[0] and j[0] < i[2] and j[0] >= i[1]: #find rectangle corner
+                if cross(i, j) and j[0] < i[2] and j[2] > i[0]: #find rectangle corner
                     minx = inf
                     miny = inf
                     for i2 in edges_x: #find bottom

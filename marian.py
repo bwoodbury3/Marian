@@ -501,7 +501,11 @@ def randLevel(args, name, destination):
       highPoint = int(html[firstIDStartIndex : firstIDEndIndex])
       print highPoint
    except Exception as e:
-      sendmsg(destination, "The resource is down. Here's what I can do:")
+      sendmsg(destination, "The resource is down. Here's a random level within my power:")
+      randID = randint(lowPoint, highPoint)
+      url = urllib2.urlopen("http://fantasticcontraption.com/?levelId=" + str(randID))
+      return
+
 
    randID = randint(lowPoint, highPoint)
    url = urllib2.urlopen("http://fc.sk89q.com/level?levelId=" + str(randID))

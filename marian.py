@@ -15,7 +15,7 @@ from fileutil import FormattedFCML
 hashedShutdownPassword = '1cd024d7d690559cb63a8fc33173ad3e76233c7843a131ca98250dc9a984253bdc586e0069261881ce1cbd30e51a98888740f8bcfcb342e453bc17bed1e64363'
 hashedAuthenticationPassword = '94400a69906fd91b63cfae3066e1e90a6c8d2c506f473a61449a419260d3d72f1d95242ad644cc38f80703247dd17b7bd42062e24e54545b7159e2f84b794050'
 server = 'polar.coldfront.net'
-channel = '#fctest'
+channel = '#fc'
 nick = 'marian'
 passw = 'iamafantasticcontraptionbot'
 port = 6667
@@ -93,6 +93,7 @@ def main():
    addCommand("sandwich", "Easter Egg", sandwich, False)
    addCommand("sudosandwich", "Easter Egg", sudosandwich, False)
    addCommand("sudo", "Easter Egg", sudo, False)
+   addCommand("echo", "Easter Egg", echo, False)
 
    logging.basicConfig(format='%(asctime)s %(message)s', filename='HTMLsaves/irclog.log', level=logging.WARNING)
 
@@ -506,7 +507,6 @@ def randLevel(args, name, destination):
       url = urllib2.urlopen("http://fantasticcontraption.com/?levelId=" + str(randID))
       return
 
-
    randID = randint(lowPoint, highPoint)
    url = urllib2.urlopen("http://fc.sk89q.com/level?levelId=" + str(randID))
    #We should check to make sure the level is published. If it is not, we should find another level
@@ -523,5 +523,12 @@ def randLevel(args, name, destination):
    levelAuthor = html[authorLocation1 : authorLocation2] #Finding author still needs some work
    
    sendmsg(destination, levelName + " by " + levelAuthor + ": www.fantasticcontraption.com/?levelId=" + str(randID))
+
+def echo(args, name, destination):
+   if name in whitelist:
+      message = " ".join(args[1:])
+      sendmsg("#fc", message)
+   else:
+      sendmsg(destination, "Echo? Am I a cave?")
 
 main()

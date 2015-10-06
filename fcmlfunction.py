@@ -148,13 +148,15 @@ class FCMLFunction:
             size = math.sqrt((x - lastX) ** 2  + (y - lastY) ** 2) + 10
             lastX = x
             lastY = y
-            fcml += self.plot(x, y, rotation, size) + "\n"
+            block = self.plot(x, y, rotation, size)
+            if block != "":
+                fcml += self.plot(x, y, rotation, size) + "\n"
         return fcml
 
     def plot(self, x, y, rotation, size):
         if y < 725 and y > -725:
             return "DynamicRect (" + str(x) + ", " + str(-y) + "), (" + str(size) \
-                + ", " + str(self.width) + "), " + str(rotation * 58)
+                + ", " + str(self.width) + "), " + str(int(rotation * 58))
         else:
             return ""
 

@@ -366,7 +366,7 @@ def plot(args, name, destination):
          xrightbound = 1000
          numrects = 100
          width = 10
-         if len(args) > 2:
+         if len(args) > 1:
             for arg in args[2:]:
                opt = arg.split("=")
                if len(opt) != 2:
@@ -396,6 +396,8 @@ def plot(args, name, destination):
                   width = int(opt[1])
                   if width <= 0:
                      sendmsg(destination, "Invalid width (must be greater than 0)")
+         else:
+            sendmsg(destination, "Looks like you have incorrect syntax somewhere...")
          fcmlfunc = FCMLFunction(equation, translateX=xtrans, translateY=ytrans, xScale=xscale, yScale=yscale, xLeftBound=xleftbound, xRightBound=xrightbound, numRects=numrects, width=width)
          fcml = fcmlfunc.toFCML()
          formattedfcml = FormattedFCML("equation")

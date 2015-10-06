@@ -11,6 +11,7 @@ import os
 from fcmlimage import FCMLImage
 from random import randint
 from fileutil import FormattedFCML
+from fcmlfunction import FCMLFunction
 
 hashedShutdownPassword = '1cd024d7d690559cb63a8fc33173ad3e76233c7843a131ca98250dc9a984253bdc586e0069261881ce1cbd30e51a98888740f8bcfcb342e453bc17bed1e64363'
 hashedAuthenticationPassword = '94400a69906fd91b63cfae3066e1e90a6c8d2c506f473a61449a419260d3d72f1d95242ad644cc38f80703247dd17b7bd42062e24e54545b7159e2f84b794050'
@@ -83,6 +84,7 @@ def main():
    addCommand("levelfcml", "Exports a level to fcml", levelfcml, True)
    addCommand("designfcml", "Exports a design to fcml", designfcml, True)
    addCommand("imageify", "Generates fcml given an image url // WORK IN PROGRESS", imageify, True)
+   addCommand("plot", "Generates fcml given an equation and other parameters", plot, True)
    addCommand("auth", "Administrator authentication", auth, False)
    addCommand("deauth", "Remove name from whitelist", deauth, False)
    addCommand("randLevel", "Gets a random level. Can specify [unsolved]", randLevel, True)
@@ -351,6 +353,56 @@ def displayShufRules(destination):
    sendmsg(destination, "-- Solve the current level: '!shuf solve [designID]'")
    sendmsg(destination, "-- Edit the current level: '!shuf edit [levelID]'")
    sendmsg(destination, "-- Find a particular level/solution: '!shuf find [index]'")
+
+def plot(args, name, destination):
+   try:
+      if len(args) >= 2:
+         equation = args[1]
+         xtrans = 0
+         ytrans = 0
+         xscale = 1
+         yscale = 1
+         xleftbound = -1000
+         xrightbound = 1000
+         numrects = 100
+         width = 10
+         if len(args) > 2:
+            for arg in args[2:]:
+               opt = arg.split("=")
+               if len(opt) != 2:
+                  sendmsg(destination, "Whoops! Your syntax is wrong..")
+                  return
+               if opt[0] == "xtrans":
+                  xtrans = int(opt[1])
+               if opt[0] == "ytrans":
+                  ytrans = int(opt[1])
+               if opt[0] == "xscale":
+                  xscale = float(opt[1])
+                  if xscale <= 0:
+                     sendmsg(destination, "Invalid xscale (must be greater than 0)")
+               if opt[0] == "yscale":
+                  yscale = float(opt[1])
+                  if yscale <= 0:
+                     sendmsg(destination, "Invalid yscale (must be greater than 0)")
+               if opt[0] == "xleftbound":
+                  xleftbound = int(opt[1])
+               if opt[0] == "xrightbound":
+                  xrightbound = int(opt[1])
+               if opt[0] == "numrects":
+                  numrects = int(opt[1])
+                  if numrects <=0:
+                     sendmsg(destination, "Invalid numrects (must be greater than 0)")
+               if opt[0] == "width":
+                  width = int(opt[1])
+                  if width <= 0:
+                     sendmsg(destination, "Invalid width (must be greater than 0)")
+         fcmlfunc = FCMLFunction(equation, translateX=xtrans, translateY=ytrans, xScale=xscale, yScale=yscale, xLeftBound=xleftbound, xRightBound=xrightbound, numRects=numrects, width=width)
+         fcml = fcmlfunc.toFCML()
+         formattedfcml = FormattedFCML("equation")
+         formattedfcml.writeToFile(fcml)
+         sendmsg(destination, formattedfcml.filePath)
+   except Exception as e:
+      print e
 
 def imageify(args, name, destination):
    # Check against a clock so that marian doesn't get spammed. (Once every minute?)

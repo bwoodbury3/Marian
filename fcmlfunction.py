@@ -136,6 +136,7 @@ class FCMLFunction:
         lastX = (-1 * delta + virtualLeftBound)
         lastY = self.equation.evaluate(lastX) * self.yScale
         lastX = lastX * self.yScale
+        fcml = ""
         for i in range(0, self.numRects):
             #The function must be first plotted normally, then translated to the user specs
             functionX = i * delta + virtualLeftBound
@@ -147,12 +148,15 @@ class FCMLFunction:
             size = math.sqrt((x - lastX) ** 2  + (y - lastY) ** 2) + 10
             lastX = x
             lastY = y
-            print self.plot(x, y, rotation, size)
+            fcml += self.plot(x, y, rotation, size) + "\n"
+        return fcml
 
     def plot(self, x, y, rotation, size):
         if y < 725 and y > -725:
             return "DynamicRect (" + str(x) + ", " + str(-y) + "), (" + str(size) \
                 + ", " + str(self.width) + "), " + str(rotation * 58)
+        else:
+            return ""
 
 fcmlfunc = FCMLFunction("(x/10)^2 - 2*x", xScale=1, yScale=0.25)
 fcmlfunc.toFCML()

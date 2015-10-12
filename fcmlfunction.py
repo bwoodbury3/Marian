@@ -74,16 +74,16 @@ class Equation:
             if values[i] == 'x':
                 values[i] = x
 
-        while "^" in symbols:
-            i = symbols.index("^")
-            sol = values[i] ** values[i + 1]
-            values = values[0 : i] + [sol] + values[i + 1 :]
-            symbols = symbols[: i] + symbols[i + 1 :]
-
         while "!" in symbols:
             i = symbols.index("!")
             sol = math.factorial(values[i])
             values[i] = sol
+            symbols = symbols[: i] + symbols[i + 1 :]
+
+        while "^" in symbols:
+            i = symbols.index("^")
+            sol = values[i] ** values[i + 1]
+            values = values[0 : i] + [sol] + values[i + 1 :]
             symbols = symbols[: i] + symbols[i + 1 :]
 
         while "*" in symbols:
@@ -101,7 +101,7 @@ class Equation:
         while "+" in symbols:
             i = symbols.index("+")
             sol = values[i] + values[i + 1]
-            values = values[0 : i] + [sol] + valuesvalues[i + 1 :]
+            values = values[0 : i] + [sol] + values[i + 1 :]
             symbols = symbols[: i] + symbols[i + 1 :]
 
         while "-" in symbols:
@@ -114,7 +114,7 @@ class Equation:
 
 class FCMLFunction:
     def __init__(self, equation, translateX=0, translateY=0, xScale=1, yScale=1, \
-            xLeftBound=-1000, xRightBound=1000, numRects=100, width=10):
+            xLeftBound=-1000, xRightBound=1000, numRects=100, width=10, recttype="DynamicRect"):
         if xLeftBound > xRightBound or xLeftBound < -1000 or xRightBound > 1000:
             raise Exception("Invalid boundaries")
         self.translateX = float(translateX)
@@ -126,6 +126,7 @@ class FCMLFunction:
         self.numRects = numRects
         self.equation = Equation(equation)
         self.width = width
+        self.recttype = recttype
 
     def toFCML(self):
         #Divide function into equal segments
@@ -155,10 +156,8 @@ class FCMLFunction:
 
     def plot(self, x, y, rotation, size):
         if y < 725 and y > -725:
-            return "DynamicRect (" + str(x) + ", " + str(-y) + "), (" + str(size) \
+            return self.recttype + " (" + str(x) + ", " + str(-y) + "), (" + str(size) \
                 + ", " + str(self.width) + "), " + str(int(rotation * 58))
         else:
             return ""
 
-fcmlfunc = FCMLFunction("(x/10)^2 - 2*x", xScale=1, yScale=0.25)
-fcmlfunc.toFCML()

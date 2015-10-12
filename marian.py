@@ -16,7 +16,7 @@ from fcmlfunction import FCMLFunction
 hashedShutdownPassword = '1cd024d7d690559cb63a8fc33173ad3e76233c7843a131ca98250dc9a984253bdc586e0069261881ce1cbd30e51a98888740f8bcfcb342e453bc17bed1e64363'
 hashedAuthenticationPassword = '94400a69906fd91b63cfae3066e1e90a6c8d2c506f473a61449a419260d3d72f1d95242ad644cc38f80703247dd17b7bd42062e24e54545b7159e2f84b794050'
 server = 'polar.coldfront.net'
-channel = '#fc'
+channel = '#fctest'
 nick = 'marian'
 passw = 'iamafantasticcontraptionbot'
 port = 6667
@@ -366,6 +366,7 @@ def plot(args, name, destination):
          xrightbound = 1000
          numrects = 100
          width = 10
+         recttype = "StaticRect"
          if len(args) > 1:
             for arg in args[2:]:
                opt = arg.split("=")
@@ -394,15 +395,32 @@ def plot(args, name, destination):
                      sendmsg(destination, "Invalid numrects (must be greater than 0)")
                if opt[0] == "width":
                   width = int(opt[1])
-                  if width <= 0:
+                  if width < 0:
                      sendmsg(destination, "Invalid width (must be greater than 0)")
+               if opt[0] == "type":
+                  if "DYN" in opt[1].upper():
+                     recttype = "DynamicRect"
+                  elif "STAT" in opt[1].upper():
+                     pass
+                  else:
+                     sendmsg(destination, "Couldn't decipher your rectangle type. Going to default to StaticRect.")
          else:
             sendmsg(destination, "Looks like you have incorrect syntax somewhere...")
-         fcmlfunc = FCMLFunction(equation, translateX=xtrans, translateY=ytrans, xScale=xscale, yScale=yscale, xLeftBound=xleftbound, xRightBound=xrightbound, numRects=numrects, width=width)
+         fcmlfunc = FCMLFunction(equation, translateX=xtrans, translateY=ytrans, xScale=xscale, yScale=yscale, xLeftBound=xleftbound, xRightBound=xrightbound, numRects=numrects, width=width, recttype=recttype)
          fcml = fcmlfunc.toFCML()
          formattedfcml = FormattedFCML("equation")
          formattedfcml.writeToFile(fcml)
          sendmsg(destination, formattedfcml.filePath)
+      else:
+         sendmsg(destination, "Plot Usage: ")
+         sendmsg(destination, "\t!plot [equation] [options]")
+         sendmsg(destination, "----------------------------")
+         sendmsg(destination, "Options: ")
+         sendmsg(destination, "\txtrans/ytrans=X")
+         sendmsg(destination, "\txscale/yscale=X")
+         sendmsg(destination, "\txleftbound/yleftbound=X")
+         sendmsg(destination, "\tnumrects=X")
+         sendmsg(destination, "\twidth=X \\\\the width of the plotted line")
    except Exception as e:
       print e
 
